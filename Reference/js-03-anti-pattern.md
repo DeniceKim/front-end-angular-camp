@@ -54,7 +54,7 @@ Javascript 애플리케이션, 웹 사이트 내 모든 코드 사이에서 공�
 - 광고 제휴 업체 스크립트
 
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -153,7 +153,7 @@ typeof global_no_var; // 'undefined'
 typeof local_no_var;  // 'undefined'
 ```
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -231,7 +231,7 @@ hoistingEx(); // local declaration
 함수 표현식과 선언되지 않은 변수들이 생성된다.
 
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -266,7 +266,7 @@ null         ===   undefined     // false
 
 
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -335,7 +335,7 @@ while ( i-- ) {
 ```
 
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -413,7 +413,7 @@ for(var prop in my_cat) {
 ```
 
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -462,7 +462,7 @@ setInterval('book.selling()', 2200);
 setInterval(book.selling, 2200);
 ```
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
 
 -
 
@@ -485,4 +485,4 @@ console.log('month: ' + month, 'date: ' + date);
 ```
 
 
-[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-%EC%BD%94%EB%94%A9-%ED%8C%A8%ED%84%B4)
+[`Javascript 안티 패턴을 보완하는 방법 - 상위로 이동 ↑`](#javascript-안티-패턴을-보완하는-방법)
