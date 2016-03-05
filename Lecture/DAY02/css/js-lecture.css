@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+body {
+    margin: 0;
+    padding: 3rem;
+}
+
 nav ul {
     list-style: none;
     margin-top: 0;
@@ -9,6 +14,11 @@ nav ul {
 
 nav a {
     text-decoration: none;
+}
+
+nav a[role="button"]:hover,
+nav a[role="button"]:focus {
+    border-color: #96202A;
 }
 
 .target-el a {

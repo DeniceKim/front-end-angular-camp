@@ -11,23 +11,28 @@ var taregtElFirstA_fontSize = window.getComputedStyle(taregtElFirstA,'').fontSiz
 
 // 동적으로 버튼과 버튼 텍스트를 생성
 var increaseBtn = document.createElement('a');
-var increaseBtnText = document.createTextNode('increase anchor text + 2px');
+var increaseBtnText = document.createTextNode('increase');
 // 생성된 버튼에 버튼의 역할과 속성을 설정합니다.
 // 하이퍼링크 역할을 버튼으로 덮어씀.
 increaseBtn.setAttribute('role', 'button');
 // 포커스 요소로 설정
 increaseBtn.setAttribute('href', '');
 // Javascript를 사용하여 버튼 스타일링
-increaseBtn.style.display      = 'inline-block';
-increaseBtn.style.marginTop    = '0.625rem';
-increaseBtn.style.padding      = '0.625rem';
-increaseBtn.style.color        = '#AEA28F';
-increaseBtn.style.border       = '1px solid #AEA28F';
-increaseBtn.style.borderRadius = '0.25rem';
+increaseBtn.style.display       = 'inline-block';
+increaseBtn.style.marginBottom  = '0.625rem';
+increaseBtn.style.padding       = '0.325rem 0.875rem';
+increaseBtn.style.color         = '#AEA28F';
+increaseBtn.style.border        = '1px solid #AEA28F';
+increaseBtn.style.borderRadius  = '0.25rem';
+
+taregtElFirstA.style.fontSize = '1.375rem';
+taregtElFirstA.style.transition = 'all 0.3s';
 
 // 문서의 nav.target-el에 생성한 버튼을 마지막 자식요소로 추가합니다.
 increaseBtn.appendChild( increaseBtnText );
-targetEl.appendChild( increaseBtn );
+// targetEl.appendChild( increaseBtn );
+targetEl.insertBefore(increaseBtn, targetEl.firstElementChild);
+
 
 // 버튼에 click 이벤트를 설정합니다.
 increaseBtn.addEventListener('click', function(event) {
@@ -42,6 +47,6 @@ increaseBtn.addEventListener('click', function(event) {
     // taregtElFirstA.style.fontSize; // ????
     // W3C 브라우저 엔진으로부터 계산된 CSS 설정 값을 GET
     var getValue = window.getComputedStyle(taregtElFirstA,'').fontSize;
-    var setValue = window.parseInt(getValue, 10) + 2 + 'px';
+    var setValue = window.parseInt(getValue, 10) + 4 + 'px';
     taregtElFirstA.style.fontSize = setValue;
 });
