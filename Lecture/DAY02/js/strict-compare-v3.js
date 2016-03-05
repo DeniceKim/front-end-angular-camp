@@ -1,4 +1,5 @@
 // dom-helper.js 파일에 의존
+// strict-compare.js
 // var targetEl                = document.querySelector('.target-el');
 var targetEl                = query('.target-el')[0];
 // var taregtElFirstA          = targetEl.querySelector('li:first-child a');

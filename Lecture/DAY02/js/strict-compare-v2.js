@@ -1,3 +1,4 @@
+// strict-compare.js
 var targetEl                = document.querySelector('.target-el');
 var taregtElFirstA          = targetEl.querySelector('li:first-child a');
 var taregtElFirstA_fontSize = window.getComputedStyle(taregtElFirstA,'').fontSize;
