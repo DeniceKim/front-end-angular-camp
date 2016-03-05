@@ -66,6 +66,7 @@ for( var i = 0, links = document.querySelectorAll('nav a'); i<links.length; i+=1
 }
 
 // STEP 3
+// 변수에 데이터를 캐시한다.
 var i = 0,
     links = document.querySelectorAll('nav a');
 
