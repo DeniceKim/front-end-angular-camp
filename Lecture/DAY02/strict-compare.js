@@ -17,6 +17,14 @@ var increaseBtnText = document.createTextNode('increase anchor text + 2px');
 increaseBtn.setAttribute('role', 'button');
 // 포커스 요소로 설정
 increaseBtn.setAttribute('href', '');
+// Javascript를 사용하여 버튼 스타일링
+increaseBtn.style.display      = 'inline-block';
+increaseBtn.style.marginTop    = '0.625rem';
+increaseBtn.style.padding      = '0.625rem';
+increaseBtn.style.color        = '#AEA28F';
+increaseBtn.style.border       = '1px solid #AEA28F';
+increaseBtn.style.borderRadius = '0.25rem';
+
 // 문서의 nav.target-el에 생성한 버튼을 마지막 자식요소로 추가합니다.
 increaseBtn.appendChild( increaseBtnText );
 targetEl.appendChild( increaseBtn );
