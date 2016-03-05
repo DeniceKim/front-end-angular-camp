@@ -11,6 +11,8 @@
 호이스팅, 스코프 예에서 공부했듯이 가급적(반드시면 더 좋겠지만..)<br>
 `var`를 변수 이름 앞에 붙여 사용하라.
 
+`delete`로 지움이 가능한 것은 객체의 속성이며, `var`로 정의된 변수는 지울 수 없다.
+
 -
 
 ### 2. 엄격한 비교를 행하라.
@@ -39,5 +41,10 @@ false        ===   undefined     // false
 false        ===   null          // false
 null         ===   undefined     // false
 " \t\r\n"    ===   0             // false
+```
 
+```js
+// 인라인 스타일을 설정하지 않고 CSS 설정 값을 가져오는 방법
+// W3C 표준 방식 window.getComputedStyle
+// MS 비표준 방식 $0.currentStyle.fontSize
 ```

@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+nav ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.target-el a {
+    color: inherit;
+}
+
+.target-el li {
+    font-size: 0.875rem;
+    color: #FC4A54;
+}
+
+.target-el a:hover,
+.target-el a:focus {
+    padding-bottom: 0.125rem;
+    border-bottom: 0.0625rem solid;
+}
+
+.target-el a:focus {
+    outline: none;
+}
