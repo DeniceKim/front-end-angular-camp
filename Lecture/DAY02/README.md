@@ -3,8 +3,9 @@
 ### 1. Global Scope를 가급적 오염시키지 말아라.
 
 모듈 패턴으로 문제를 해결하라.
+<!-- 참고해서 읽어보길! http://www.nextree.co.kr/p7650/ -->
 
-- 네임스페이스 패턴
+- [네임스페이스](https://addyosmani.com/blog/essential-js-namespacing/) 패턴
 - [즉시실행함수: IIFE(Immediately-Invoked Function Expression](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) 패턴
 
 호이스팅, 스코프 예에서 공부했듯이 가급적(반드시면 더 좋겠지만..)<br>
