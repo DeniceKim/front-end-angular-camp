@@ -22,10 +22,10 @@ increaseBtn.style.display       = 'inline-block';
 increaseBtn.style.marginBottom  = '0.625rem';
 increaseBtn.style.padding       = '0.325rem 0.875rem';
 increaseBtn.style.color         = '#AEA28F';
-increaseBtn.style.border        = '1px solid #AEA28F';
+increaseBtn.style.border        = '1px solid';
 increaseBtn.style.borderRadius  = '0.25rem';
 
-taregtElFirstA.style.fontSize = '1.375rem';
+taregtElFirstA.style.fontSize   = '1.375rem';
 taregtElFirstA.style.transition = 'all 0.3s';
 
 // 문서의 nav.target-el에 생성한 버튼을 마지막 자식요소로 추가합니다.

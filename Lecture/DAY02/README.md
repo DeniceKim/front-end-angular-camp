@@ -48,3 +48,28 @@ null         ===   undefined     // false
 // W3C 표준 방식 window.getComputedStyle
 // MS 비표준 방식 $0.currentStyle.fontSize
 ```
+
+-
+
+### 3. 반복 구문에서 중복되는 것을 캐시하라.
+
+```js
+// STEP 1
+for( var i = 0, i < document.querySelectorAll('nav a').length; i+=1 ) {
+    console.log( document.querySelectorAll('nav a')[i] );
+}
+
+
+// SETP 2
+for( var i = 0, links = document.querySelectorAll('nav a'); i<links.length; i+=1 ) {
+    console.log( links[i] );
+}
+
+// STEP 3
+var i = 0,
+    links = document.querySelectorAll('nav a');
+
+for( ; i<links.length; i+=1 ) {
+    console.log( links[i] );
+}
+```
