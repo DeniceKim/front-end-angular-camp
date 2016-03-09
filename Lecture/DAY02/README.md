@@ -1,3 +1,7 @@
+###### Fast Campus ─ Front-End AngularJS CAMP
+
+# DAY02
+
 ## Javascript 안티패턴(Anti-Patterns)
 
 ### 1. Global Scope를 가급적 오염시키지 말아라.
