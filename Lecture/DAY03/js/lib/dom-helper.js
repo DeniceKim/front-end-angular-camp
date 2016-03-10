@@ -45,37 +45,10 @@ function query(selector, context) {
 
 /**
  * 리스트(집합)를 반복 순환하여 처리하는 헬퍼 함수
- * @param  {Array, Like-Array}   data     배열, 유사배열
- * @param  {Function} callback 콜백함수
- * @return {undefined}            함수 반환 값 없음
+ * @param  {array, like-array} data       배열, 유사배열
+ * @param  {function}          callback   콜백함수
+ * @return {undefined}                    함수 반환 값 없음
  */
-// function each(data, callback) {
-
-//     // 검증. data 전달 받은 값이 배열 또는 유사 배열인지를 확인
-//     if ( !data.length || typeof data === 'string' ) {
-//         console.error('배열 또는 유사배열 데이터 유형만 처리가 가능합니다.');
-//         return; // 함수 종료
-//     }
-
-//     // 검증. callback 전달 받은 값이 함수가 아니라면 오류 처리
-//     if ( typeof callback !== 'function' ) {
-//         console.error('함수 데이터 유형만 처리가 가능합니다.');
-//         return; // 함수 종료
-//     }
-
-//     // 조건 1. data 유형이 배열이라면
-//     if ( data.push ) {
-//        data.forEach(callback);
-//     }
-//     // 조건 2. data 유형이 유사배열이라면
-//     // 배열 프로토타입 객체의 forEach 메소드 빌려쓰기
-//     else {
-//         [].forEach.call(data, callback);
-//     }
-
-// }
-
-// IE 8 이하 웹 브라우저 호환성을 위한 each() 함수 개선
 function each(data, callback) {
 
     if ( !data.length || isString(data) ) {
@@ -86,22 +59,10 @@ function each(data, callback) {
         console.error('함수 데이터 유형만 처리가 가능합니다.');
     }
 
-    // Array.prototype.forEach
-    // 객체 판별법
-    if ( Array.prototype.forEach ) {
-        // 제작한 isArray() 함수 활용
-        if ( isArray(data) ) {
-            data.forEach(callback);
-        }
-        else {
-            [].forEach.call(data, callback);
-        }
+    if ( Array.isArray(data) ) {
+        data.forEach(callback);
     } else {
-        // Array.prototype.forEach가 지원되지 않으면..
-        for ( var i=0, l=data.length; i<l; i+=1 ) {
-            // 네이티브 forEach와 동일하게 작동하도록 함수 인자를 전달해준다.
-            callback(data[i], i, data);
-        }
+        [].forEach.call(data, callback);
     }
 
 }
