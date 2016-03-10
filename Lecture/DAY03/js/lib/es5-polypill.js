@@ -9,6 +9,19 @@ if (!Array.isArray) {
     }
 }
 
+// 전달받은 데이터(유사배열)를 배열로 변환해주는 함수
+if (!Array.makeArray) {
+    Array.makeArray = function(like_arr) {
+        var maked_array = [];
+        if ( !Array.isArray(like_arr) ) {
+            Array.prototype.forEach.call(like_arr, function(item, index, array) {
+                maked_array.push(item);
+            });
+            return maked_array;
+        }
+    }
+}
+
 if (!Array.prototype.forEach) {
     // Array.prototype.forEach 이 존재하지 않는
     // 구형 브라우저에서는 Array.prototype.forEach 정의
