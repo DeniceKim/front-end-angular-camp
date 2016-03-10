@@ -118,3 +118,32 @@ console.log( (undefined).constructor ); // Uncaught TypeError: Cannot read prope
 // type(9);    // 'number'
 // type(null); // 'null'
 // type([]);   // 'array'
+
+// 숫자, 문자, 불린, 함수, 배열, 객체, 정규표현식, 수학, 날짜, 오류, ...
+// (/[a-z]/).constructor      // RegExp
+// (new RegExp()).constructor // RegExp
+// (new Date()).constructor   // Date
+// (new Error).constructor    // Error
+
+function type(data) {
+    // constructor가 안전하지 않은 (null, undefined) 확인
+    if ( data === undefined || data === null ) {
+        // 삼항 조건문으로 유형 확인 후, 결과 값 반환
+        return data === undefined ? 'undefined' : 'null';
+    }
+    // constructor 안전한 객체 유형 확인
+    else {
+        // 스위치문으로 data 생성자가 무엇인지 유형(case)별 결과 값 반환
+        switch( data.constructor ) {
+            case Number:   return 'number';
+            case String:   return 'string';
+            case Boolean:  return 'boolean';
+            case Function: return 'function';
+            case Array:    return 'array';
+            case Object:   return 'object';
+            case RegExp:   return 'regexp';
+            case Date:     return 'date';
+            case Error:    return 'error';
+        }
+    }
+}
