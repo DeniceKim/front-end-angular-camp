@@ -37,7 +37,7 @@ if (!Array.prototype.forEach) {
         }
         // forEach 역할이 구현화되지 않은 웹 브라우저에서 구현되도록 추상화
         for (var i=0, l=that.length; i<l; i+=1) {
-            callback.call(null, that[i], i, that);
+            callback(that[i], i, that);
         }
     }
 }
