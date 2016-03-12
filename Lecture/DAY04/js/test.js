@@ -3,6 +3,10 @@
 // 의존 라이브러리 dom-helper.js
 (function(exports, $){
     'use strict';
+
+    console.dir( $ );
+
+    return;
     // [모듈] 전역과 구분되는 별도의 공간 형성
 
     // 의존 라이브러리가 잘 동작하는지 확인
@@ -23,6 +27,7 @@
         // 반복 수행되는 함수
         function loopAssignClass(item, index) {
             item.classList.add('loop-assign-el-' + index);
+            // 객체의 속성을 관대하게 확장
             item.index = index;
             item.addEventListener('click', toggleLoopClass);
         }
@@ -37,9 +42,9 @@
             var confirm_className = 'loop-assign-el-' + target.index;
             target.classList.toggle( confirm_className );
             // if ( target.classList.contains(confirm_className) ) {
-            //     target.classList.remove( confirm_className );
+            //     target.classList.remove(confirm_className);
             // } else {
-            //     target.classList.add( confirm_className );
+            //     target.classList.add(confirm_className);
             // }
         }
     }

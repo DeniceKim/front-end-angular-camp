@@ -8,10 +8,23 @@
     a {
         display: block;
     }
+    /* 속성 선택자 */
+    a[class*="loop-assign-el-"] {
+        text-decoration: none;
+        color: #FE4940;
+    }
     </style>
+
     <script src="js/lib/es5-polypill.js"></script>
-    <script src="js/lib/dom-helper.js"></script>
+    <!-- <script src="js/lib/dom-helper.js"></script> -->
     <!-- <script src="js/main.js"></script> -->
+
+    <!-- Call dom Library Modules -->
+    <script src="js/lib/dom/modules/dom.query.js"></script>
+    <script src="js/lib/dom/modules/dom.each.js"></script>
+    <script src="js/lib/dom/modules/dom.utils.type.js"></script>
+    <!-- // Call dom Library Modules -->
+
     <script src="js/test.js"></script>
 </head>
 <body>
