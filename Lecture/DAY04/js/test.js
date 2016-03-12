@@ -23,6 +23,7 @@
         // 반복 수행되는 함수
         function loopAssignClass(item, index) {
             item.classList.add('loop-assign-el-' + index);
+            item.index = index;
             item.addEventListener('click', toggleLoopClass);
         }
         // 요소를 클릭하면 처리되는 콜백 함수
@@ -31,7 +32,15 @@
             // 브라우저의 기본 동작 차단
             evt.preventDefault();
             // 클릭한 대상의 class 속성 값을 출력
-            console.log( target.getAttribute('class') );
+            // console.log( target.getAttribute('class') );
+            // 클릭했을 때 자신의 인덱스 값을 가져와야 한다.
+            var confirm_className = 'loop-assign-el-' + target.index;
+            target.classList.toggle( confirm_className );
+            // if ( target.classList.contains(confirm_className) ) {
+            //     target.classList.remove( confirm_className );
+            // } else {
+            //     target.classList.add( confirm_className );
+            // }
         }
     }
 
