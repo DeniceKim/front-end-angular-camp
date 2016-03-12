@@ -23,11 +23,10 @@ var outerFn = function() {
 };
 
 var i_fn = outerFn(); // 함수 실행
-
 // console.log( i_fn() ); // '나는.... 있다.'
 
 
-// ------- 실습 예제
+// ------- 실습 예제 -------------------------------------------------
 
 // 초기화 변수 값이 0인데
 // 사용자가 5를 더 하든..
@@ -74,9 +73,107 @@ var initCount = function(initValue) {
 // initCount() 함수를 실행
 var addNum = initCount(-20);
 
-console.log( addNum(3) );
-console.log( addNum(6) );
-console.log( addNum(-12) );
-console.log( addNum(1) );
+// console.log( addNum(3) );   // -20 + 3
+// console.log( addNum(6) );   // -20 + 3 + 6
+// console.log( addNum(-12) ); // -20 + 3 + 6 + (-12)
+// console.log( addNum(1) );   // -20 + 3 + 6 + (-12) + 1
 
+// 전역에서 접근 불가능한 변수
+// initCount 함수 내부 영역에 은폐(Encapsulation)되어 있다
 // console.log( count );
+
+
+// ------- 즉시실행함수(IIFE) 패턴 -------------------------------------------------
+// 함수의 호출 과정 없이 바로 실행되는 함수를 말한다.
+// !function(){}()
+// +function(){}()
+// (function(){}()) [o]
+// (function(){})() [o]
+
+// 클로저로 함수를 반환
+var counter = (function(){
+    // 함수 스코프(전역과 구분되는 지역 공간)
+    var _count = 0;
+    // 함수 반환 (클로저)
+    return function(num) {
+        return _count += num;
+    };
+}());
+
+// console.log( counter(3) );
+// console.log( counter(10) );
+// console.log( counter(12) );
+
+// 자바스크립트 일반 객체를 통한 Counter 객체 생성
+// var Counter = new Object();
+// var Counter = Object.create(Object.prototype);
+// var Counter = {
+//     'initValue' : 0,
+//     'increse'  : function(value) {
+//         this.initValue += value || 1;
+//         return this.initValue;
+//     },
+//     'decrese'   : function(value) {
+//         this.initValue -= value || 1;
+//         return this.initValue;
+//     },
+//     'reset'     : function() {
+//         this.initValue = 0;
+//         return this.initValue;
+//     }
+// };
+
+// console.log( Counter.increse() );
+// console.log( Counter.increse(3) );
+// console.log( Counter.increse(7) );
+// console.log( Counter.decrese() );
+// console.log( Counter.decrese(10) );
+// console.log( Counter.decrese() );
+// console.log( Counter.reset() );
+
+
+// 클로저로 객체를 반환
+var Counter = (function(){
+    // 전역과 구분되는 지역 공간
+    // 은폐된 지역 변수
+    var _value = 0;
+    // 모듈 공간 [모듈 패턴]
+    var _counter = {
+        'increseValue': function(value) {
+            _value += value || 1;
+        },
+        'decreseValue': function(value) {
+            _value -= value || 1;
+        },
+        'resetValue': function() {
+            _value = 0;
+        },
+        'setValue': function(value) {
+            _value = value || 0;
+        },
+        'getValue': function() {
+            return _value;
+        }
+    };
+
+    // 클로저 반환(객체 유형을 반환)
+    return _counter;
+
+})();
+
+Counter.increseValue();
+console.log( Counter.getValue() );
+Counter.increseValue(3);
+console.log( Counter.getValue() );
+Counter.decreseValue(9);
+console.log( Counter.getValue() );
+Counter.increseValue(2);
+console.log( Counter.getValue() );
+Counter.decreseValue();
+console.log( Counter.getValue() );
+Counter.increseValue();
+console.log( Counter.getValue() );
+Counter.decreseValue(7);
+console.log( Counter.getValue() );
+Counter.resetValue();
+console.log( Counter.getValue() );
