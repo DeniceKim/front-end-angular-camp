@@ -6,7 +6,7 @@
 
     console.dir( $ );
 
-    return;
+    // return;
     // [모듈] 전역과 구분되는 별도의 공간 형성
 
     // 의존 라이브러리가 잘 동작하는지 확인
@@ -18,7 +18,7 @@
     // 초기 수행되는 함수
     function init() {
         // 라이브러리를 사용해서 변수에 문서 객체대상을 참조
-        var refEls = $.query('a');
+        var refEls = $.queryAll('a');
         // 확인
         // console.log(refEls); // 노드리스트, HTML 콜렉션 (유사배열)
         // classList API를 사용해서 class 속성 설정

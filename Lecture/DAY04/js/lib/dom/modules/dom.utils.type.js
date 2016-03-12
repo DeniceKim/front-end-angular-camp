@@ -35,6 +35,10 @@
         return type(data) === 'object';
     }
 
+    function isElement(data) {
+        return data && (data.nodeType === 1);
+    }
+
     // dom.utils 객체 존재 유무 확인
     if ( !dom.utils ) {
         dom.utils = {};
@@ -48,5 +52,6 @@
     dom.utils.isFunction = isFunction;
     dom.utils.isArray    = isArray;
     dom.utils.isObject   = isObject;
+    dom.utils.isElement  = isElement;
 
 })( window.dom || (window.dom = {}) );

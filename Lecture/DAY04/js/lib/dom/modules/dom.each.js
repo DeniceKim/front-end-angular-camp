@@ -8,10 +8,10 @@
      * @return {undefined}                    함수 반환 값 없음
      */
     function each(data, callback) {
-        if ( !data.length || isString(data) ) {
+        if ( !data.length || dom.utils.isString(data) ) {
             console.error('배열 또는 유사배열 데이터 유형만 처리가 가능합니다.');
         }
-        if ( !isFunction(callback) ) {
+        if ( !dom.utils.isFunction(callback) ) {
             console.error('함수 데이터 유형만 처리가 가능합니다.');
         }
         if ( Array.isArray(data) ) {
