@@ -21,7 +21,6 @@
     function css(elNode, property, value) {
         // CSS 문자열 값을 Javascript에서 쓸 수 있도록 변경해주는 유틸 메소드 사용
         property = dom.utils.toCamel(property);
-        console.log(property);
 
         if ( dom.utils.isElement(elNode) ) {
             // setter
