@@ -161,19 +161,71 @@ var Counter = (function(){
 
 })();
 
-Counter.increseValue();
-console.log( Counter.getValue() );
-Counter.increseValue(3);
-console.log( Counter.getValue() );
-Counter.decreseValue(9);
-console.log( Counter.getValue() );
-Counter.increseValue(2);
-console.log( Counter.getValue() );
-Counter.decreseValue();
-console.log( Counter.getValue() );
-Counter.increseValue();
-console.log( Counter.getValue() );
-Counter.decreseValue(7);
-console.log( Counter.getValue() );
-Counter.resetValue();
-console.log( Counter.getValue() );
+// Counter.increseValue();
+// console.log( Counter.getValue() );
+// Counter.increseValue(3);
+// console.log( Counter.getValue() );
+// Counter.decreseValue(9);
+// console.log( Counter.getValue() );
+// Counter.increseValue(2);
+// console.log( Counter.getValue() );
+// Counter.decreseValue();
+// console.log( Counter.getValue() );
+// Counter.increseValue();
+// console.log( Counter.getValue() );
+// Counter.decreseValue(7);
+// console.log( Counter.getValue() );
+// Counter.resetValue();
+// console.log( Counter.getValue() );
+
+// ------- 모델(Model) 모듈 객체 -------------------------------------------------
+// 어떤 데이터를 저장할 것인가?
+// 모델 모듈 객체에 어떤 일을 수행하는 멤버를 추가할 것인가?
+// 데이터 읽기 (readData)
+// 데이터 쓰기 (writeData)
+// 데이터 제거 (removeData)
+// 데이터 저장 (saveData)
+// 데이터 초기화 (resetData)
+// 실제 데이터는 어디에 저장할 것인가? 프론트엔드? 백엔드?
+
+var Model = (function(){
+    // 모델 초기 값
+    var idNum = 0,
+        _storage = [];
+    // 반활할 클로저 객체(모델 인스턴스 객체)
+    return {
+        'readData': function() {
+            return _storage;
+        },
+        'writeData': function(id, value) {
+            _storage.push({
+                'id': id || 'model-' + ++idNum,
+                'value': value
+            });
+        },
+        'removeData': function() {
+            _storage.pop();
+        },
+        'saveData': function() {
+            // 어딘가에 저장?
+            // 서버 쪽, 클라이언트 쪽?
+        },
+        'resetData': function() {
+            _storage = [];
+        }
+    };
+})();
+
+console.log( Model.readData() ); // []
+
+Model.writeData('yamoo9', function() {
+    return 'this is function value';
+});
+console.log( Model.readData() ); // [{'id': 'yamoo9', 'value', function(){}}]
+
+Model.writeData('', { 'name': 'untitled object' });
+console.log( Model.readData() );
+// [
+//      {'id': 'yamoo9', 'value', function(){}},
+//      {'id': 'model-1', 'value', { 'name': 'untitled object' }},
+// ]

@@ -11,6 +11,8 @@
     - 객체 상속
     - 상속된 속성 오버라이딩(덮어쓰기)
 
+- [21 hot programming trends -- and 21 going cold](http://www.javaworld.com/article/3042588/application-development/21-hot-programming-trends-and-21-going-cold.html)
+
 -
 
 ### 모듈 패턴
