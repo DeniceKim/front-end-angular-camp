@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>Sandbox Pattern</title>
+    <script src="js/lib/$sandbox.js"></script>
+</head>
+<body>
+
+<script>
+
+// 샌드박스는 생성자 함수이니 new 를 함께 사용해서 실행
+// var test = $sandbox(['module1', 'module2'], function(box) {});
+// var test = $sandbox('module1', 'module2', 'module3', function(box) {});
+// var test = $sandbox([], function(box) {});
+// var test = $sandbox('*', function(box) {});
+var test = $sandbox(['events'], function(box) {});
+
+console.dir( test );
+
+</script>
+</body>
+</html>

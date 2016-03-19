@@ -1,5 +1,4 @@
 /*! yamoo9.ui.button.js © yamoo9.net, 2016 */
-
 (function(ui){
     'use strict';
 
@@ -9,6 +8,10 @@
     // console.log(window.yamoo9, ui);
 
     ui.Button = function(selector, using_prevent_default) {
+
+        // 함수의 전달인자를 별도로 받지 않고,
+        // 확인하는 방법? arguments
+
         // 개별 멤버(인스턴스 멤버)
         // this === window
 
