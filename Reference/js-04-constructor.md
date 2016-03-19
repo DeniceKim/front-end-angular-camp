@@ -6,6 +6,7 @@
 1. [Javascript 안티 패턴을 보완하는 방법](js-03-anti-pattern.md)
 1. Javascript 생성자(Constructor)와 리터럴(Literal)
 1. [Javascript 함수](js-05-function.md)
+1. [Javascript 객체 생성 패턴](js-06-create-object-pattern.md)
 
 -
 
