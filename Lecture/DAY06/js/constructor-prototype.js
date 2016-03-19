@@ -176,19 +176,23 @@ var milk_cup   = new MugCup('우유'),
     coffee_cup = new MugCup('커피'),
     juce_cup   = new MugCup('쥬스');
 
-console.log( milk_cup.drink('220ml') );
-console.log( juce_cup.heat('3초') );
-console.log( juce_cup.drink('30ml') );
-console.log( coffee_cup.mixin('우유') );
+// console.log( milk_cup.drink('220ml') );
+// console.log( juce_cup.heat('3초') );
+// console.log( juce_cup.drink('30ml') );
+// console.log( coffee_cup.mixin('우유') );
 
 
 /**
  * --------------------------------
  * UI 컴포넌트 객체 디자인
+ * --------------------------------
+ * - Button 객체 생성자(클래스)
  * - Navigation 객체 생성자(클래스)
  * - Carousel 객체 생성자(클래스)
- * - Button 객체 생성자(클래스)
  * - Gallery 객체 생성자(클래스)
  * - Pagenation 객체 생성자(클래스)
  * - OffCanvas 객체 생성자(클래스)
+ * - Modal 객체 생성자(클래스)
  * ----------------------------- */
+
+
