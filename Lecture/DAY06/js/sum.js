@@ -1,5 +1,5 @@
-
 function sum() {
+
     // 사용자가 전달한 인자 === arguments
     // arguments는 함수 내부에서만 생성, 참조
     // arguments는 length 속성을 가짐.
@@ -38,6 +38,7 @@ function sum() {
     });
 
     return total;
+
 }
 
 sum( 1, 3, 5, 7, 9 ); // 합산된 결과

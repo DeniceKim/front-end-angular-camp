@@ -42,7 +42,7 @@
             for ( var module in Sandbox.modules ) {
                 modules.push( module );
             }
-            console.log(modules); // dom, ajax, events
+            // console.log(modules); // dom, ajax, events
         }
 
         // console.log('modules: ', modules);
@@ -50,10 +50,12 @@
 
         var that = this;
 
+        // 객체 합성이 완료되면...
         modules.forEach(function(module, index) {
             Sandbox.modules[module](that);
         });
 
+        // 콜백 함수 실행
         callback(this);
 
     };
@@ -63,7 +65,7 @@
     Sandbox.modules = {};
 
     Sandbox.modules.dom = function(box) {
-        console.log(box);
+        // console.log(box);
         box.query    = function(selector, context) {};
         box.queryAll = function(selector, context) {};
         box.css      = function(el, prop, value) {};
@@ -79,7 +81,10 @@
         box.off = function(el, type, handler, capture) {};
     };
 
-
+    // 프로토타입
+    Sandbox.prototype = {
+        'version': '1.0.0'
+    };
 
     // 모듈 패턴 내부에 비공개된 멤버 중, 일부를 노출하는 것을 노출 패턴이라고 한다.
     exports.$sandbox = Sandbox;
