@@ -40,15 +40,47 @@
 
 ### 2. 코드 재사용 패턴
 
-1. 클래스 방식 vs 클래스가 아닌 방식
-1. 클래스 방식 상속을 흉내내기
-1. 클래스 방식 패턴 #1 - 기본 패턴
-1. 클래스 방식 패턴 #2 - 생성자 빌려쓰기
-1. 클래스 방식 패턴 #3 - 생성자 빌려쓰기 + 프로토타입 지정
-1. 클래스 방식 패턴 #4 - 프로토타입 공유
-1. 클래스 방식 패턴 #5 - 임시 생성자
-1. klass 헬퍼 함수
-1. 프로토타입 상속
-1. 속성 복사 상속 패턴
-1. 믹스인
-1. 메소드 빌려쓰기
+##### 1. 클래스 방식 vs 클래스가 아닌 방식
+
+##### 2. 클래스 방식 상속을 흉내내기
+```js
+부모의 능력을 자식에게 물려준다. (코드 재사용)
+```
+
+##### 3. 클래스 방식 패턴 #1 - 기본 패턴
+```js
+Child.prototype = new Parent()
+```
+
+##### 4. 클래스 방식 패턴 #2 - 생성자 빌려쓰기
+```js
+function Child() {
+    Parent.apply(this, arguments);
+}
+```
+
+##### 5. 클래스 방식 패턴 #3 - 생성자 빌려쓰기 + 프로토타입 지정
+```js
+function Child() {
+    Parent.apply(this, arguments);
+}
+Child.prototype = new Parent();
+```
+
+##### 6. 클래스 방식 패턴 #4 - 프로토타입 공유
+```js
+function inherit(Parent, Child) {
+    Child.prototype = Parent.prototype;
+}
+```
+
+##### 7. 클래스 방식 패턴 #5 - 임시 생성자
+```js
+function inherit(Parent, Child) {
+    var F = function() {};
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child;
+    Child.prototype.__super__ = Parent.prototype;
+}
+```

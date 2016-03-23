@@ -14,7 +14,7 @@
         // 프로토타입 체인(추적)
         // 단점...
         //
-        Child.prototype = new Parent();
+        Child.prototype = new Parent(); // Parent.prototype
     };
 
     // 함수 포인터 참조
