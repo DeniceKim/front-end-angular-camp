@@ -32,3 +32,4 @@
 1. [Javascript 생성자(Constructor)와 리터럴(Literal)](js-04-constructor.md)
 1. [Javascript 함수](js-05-function.md)
 1. [Javascript 객체 생성 패턴](js-06-create-object-pattern.md)
+1. [Javascript 재사용 패턴](js-07-reusable-pattern.md)
