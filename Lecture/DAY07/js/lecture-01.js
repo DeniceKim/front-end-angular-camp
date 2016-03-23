@@ -41,9 +41,11 @@ var mouse = {};
 // 상속이란?
 // 부모 객체 → 자식 객체 (부모의 기능을 물려 받는 것을 말한다)
 // 생성자(클래스와 유사)
-var Parent = function(name) {
+var Parent = function(name, age, job) {
     // 생성자 자신의 멤버
     this.name = name || 'Adam';
+    this.age = age || 30;
+    this.job = job || '무직';
 };
 
 // 생성자의 프로토타입 객체(재사용 가능한 멤버를 담아두는 공간)
@@ -52,8 +54,24 @@ Parent.prototype.say = function() {
     return this.name;
 };
 
-var Child = function(name) {
+var Child = function() {
     // 현재 비워져 있음
+
+    // 2.
+    // 클래스 방식 상속 패턴 #1 - 생성자 빌려쓰기
+    // 부모 생성자(함수)를 빌려씀으로써
+    // 부모 생성자(함수) 내부의 this 컨텍스트를
+    // Child 인스턴스 객체로 변경하여 함수를 실행
+    // Child 인스턴스 객체의 name 속성이 설정됨.
+    // Parent.call(this, name, age, job);
+    // call() vs apply() 차이점은 인자를 배열로 받는데 있다.
+    // Parent.apply(this, [name, age, job]);
+    // 함수에 전달되는 인자(유사배열)를 arguments
+    Parent.apply(this, arguments);
+
+    // 단점
+    // 프로토타입 상속을 하지 않았다.
+    // 부모 생성자를 빌려씀으로서 부모의 속성을 그대로 복사 (참조 끊기)
 };
 
 // Child.prototype; // 빈 객체 상태
@@ -61,7 +79,7 @@ var Child = function(name) {
 // 부모의 능력을 자식에게 상속
 // inherit() 함수는 자바스크립트에 내장되어 있지 않다.
 // 즉, 네이티브 구현이 되어 있지 않다. (기본적으로는 사용 불가)
-$inherit( Parent, Child );
+// $inherit( Parent, Child );
 
 // --------------------------------------------
 
@@ -81,11 +99,10 @@ var papa = new Parent();
 // 자식 생성자를 통해 인스턴스 객체 생성
 // 자식 인스턴스 객체가 상속받은 부모 객체의 능력을 소유하고 있는가?
 var kid = new Child();
-console.log('kid.name: ', kid.name);
-console.log('kid.say(): ', kid.say());
 
-console.dir(kid);
+// console.dir(kid);
 // {
+//      ?????,
 //      __proto__: {
 //          name: 'Adam',
 //          __proto__: {
@@ -93,3 +110,30 @@ console.dir(kid);
 //          }
 //      }
 // }
+
+// console.log('kid.name: ', kid.name);
+// console.log('kid.say(): ', kid.say());
+
+
+// kid 객체에 name 속성 추가
+kid.name = 'yamoo9';
+
+// console.log( kid.name ); // 'yamoo9'
+
+delete kid.name; // 제거
+
+// console.log( kid.name ); // 'Adam'
+
+// --------------------------------------------
+
+// 이 방법의 단점
+var children = new Child('Alfred', 22, '선생', true);
+
+// 기대하는 객체
+// {
+//      'name': 'Alfred',
+//      '__proto__': new Parent() | Parent.prototype
+// }
+
+// console.log(children.name); // ????
+console.dir( children );
