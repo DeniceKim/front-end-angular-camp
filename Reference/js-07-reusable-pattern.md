@@ -28,7 +28,7 @@
 - [클래스 방식의 상속 패턴 #3 ─ 생성자 빌려쓰기 + 프로토타입 지정](#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4-3--%EC%83%9D%EC%84%B1%EC%9E%90-%EB%B9%8C%EB%A0%A4%EC%93%B0%EA%B8%B0--%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%A7%80%EC%A0%95)
 - [클래스 방식의 상속 패턴 #4 ─ 프로토타입 공유](#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4-4--%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EA%B3%B5%EC%9C%A0)
 - [클래스 방식의 상속 패턴 #5 ─ 임시 생성자](#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4-5--%EC%9E%84%EC%8B%9C-%EC%83%9D%EC%84%B1%EC%9E%90)
-- [$class](#$class)
+- [$class](#class)
 - [프로토타입을 활용한 상속](#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)
 - [속성 복사를 통한 상속 패턴](#%EC%86%8D%EC%84%B1-%EB%B3%B5%EC%82%AC%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4)
 - [믹스인](#%EB%AF%B9%EC%8A%A4%EC%9D%B8)
