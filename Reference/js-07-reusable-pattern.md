@@ -28,7 +28,7 @@
 - [클래스 방식의 상속 패턴 #3 ─ 생성자 빌려쓰기 + 프로토타입 지정](#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4-3--%EC%83%9D%EC%84%B1%EC%9E%90-%EB%B9%8C%EB%A0%A4%EC%93%B0%EA%B8%B0--%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%A7%80%EC%A0%95)
 - [클래스 방식의 상속 패턴 #4 ─ 프로토타입 공유](#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4-4--%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EA%B3%B5%EC%9C%A0)
 - [클래스 방식의 상속 패턴 #5 ─ 임시 생성자](#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4-5--%EC%9E%84%EC%8B%9C-%EC%83%9D%EC%84%B1%EC%9E%90)
-- [klass](#klass)
+- [$class](#$class)
 - [프로토타입을 활용한 상속](#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%83%81%EC%86%8D)
 - [속성 복사를 통한 상속 패턴](#%EC%86%8D%EC%84%B1-%EB%B3%B5%EC%82%AC%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%83%81%EC%86%8D-%ED%8C%A8%ED%84%B4)
 - [믹스인](#%EB%AF%B9%EC%8A%A4%EC%9D%B8)
@@ -477,18 +477,18 @@ var inherit = (function(){
 
 -
 
-#### klass
+#### $class
 
 많은 Javascript 라이브러리가 새로운 문법 설탕(Sugar Syntax)을 도입하여 클래스를 흉내낸다. 각 구현은 다르지만 공통점을 뽑아보면 다음과 같은 것들이 있다.
 
-- 클래스의 생성자라고 할 수 있는 메소드의 명명 규칙이 존재한다. 이 메소드들은 자동으로 호출되며 `initialize`, `_init` 등의 이름을 가진다.
+- 클래스의 생성자라고 할 수 있는 메소드의 명명 규칙이 존재한다.<br>이 메소드들은 자동으로 호출되며 `initialize`, `_init` 등의 이름을 가진다.
 - 클래스는 다른 클래스로부터 상속된다.
 - 자식 클래스 내부에서 부모 클래스(상위 클래스)에 접근할 수 있는 경로가 존재한다.
 
 자세한 세부 사항으로 들어가기 전에 Javascript에서 클래스를 모방한 구현 예제를 살펴보자. 사용자 입장에서 사용하는 방법을 먼저 다뤄보자.
 
 ```js
-var Model = klass(null, {
+var Model = $class(null, {
 	'__construct': function(what) {
     	console.log('Model\'s consructor');
         this.name = what;
@@ -499,19 +499,19 @@ var Model = klass(null, {
 });
 ```
 
-여기서 문법 설탕은 `Klass()`라는 이름의 함수 형태로 등장한다. 다른 구현 사례를 보면 이 함수 대신 `Klass()`라는 생성자 함수를 사용하거나 `Object.prototype`을 확장해서 사용하기도 하는데 여기서는 간단한 함수로 진행해보도록 하자.
+여기서 문법 설탕은 `$class()`라는 이름의 함수 형태로 등장한다. 다른 구현 사례를 보면 이 함수 대신 `$class()`라는 생성자 함수를 사용하거나 `Object.prototype`을 확장해서 사용하기도 하는데 여기서는 간단한 함수로 진행해보도록 하자.
 
 이 함수는 두 개의 전달인자를 받는다. 하나는 상속할 부모 클래스이고, 다른 하나는 객체 리터럴 형식으로 표기된 새로운 클래스의 구현이다. PHP에서 가져온 명명 규칙을 적용하여 클래스의 생성자 메소드는 반드시 `__construct`로 이름을 정하기로 하자. 앞선 예제에서는 `Model` 이름의 새로운 클래스가 생성되었고 아무것도 상속 받지 않았다. (정확히는 내부적으로 Object를 상속 받은 상태이다) `Model` 클래스는 `__construct` 안에서 생성된 자신만의 속성인 `name`과 함께 `getName()` 메소드를 가진다. 클래스란? 결국 생성자 함수이기 때문에 다음 코드도 잘 동작한다. (보기에도 클래스의 인스턴스를 만드는 것과 비슷하게 생겼다)
 
 ```js
 var model = new Model('Adam'); // "Models's constructor" 출력
-console.log( model.getName );  // 'Adam'
+console.log( model.getName() );  // 'Adam'
 ```
 
 이어서 `Model` 클래스를 상속 받은 `SuperModel` 클래스를 만들어 보자.
 
 ```js
-var SuperModel = klass(Model, {
+var SuperModel = $class(Model, {
 	'__construct': function(what) {
     	console.log( "SuperModel's Constructor" );
     },
@@ -522,7 +522,7 @@ var SuperModel = klass(Model, {
 });
 ```
 
-Klass()에 전달되는 첫 번째 인자는 상속받을 Model 클래스이다. `getName()` 멤버를 잘 살펴보면 SuperModel의 `_super` 속성을 사용하여 부모 클래스의 `getName()` 멤버를 먼저 호출했다.
+$class()에 전달되는 첫 번째 인자는 상속받을 Model 클래스이다. `getName()` 멤버를 잘 살펴보면 SuperModel의 `_super` 속성을 사용하여 부모 클래스의 `getName()` 멤버를 먼저 호출했다.
 
 ```js
 var lee = new SuperModel('이민영');
@@ -536,10 +536,10 @@ lee instanceof Model;      // true
 lee instanceof SuperModel; // true
 ```
 
-마지막으로 Klass() 함수가 어떤 식으로 구현될 수 있는지 살펴보자.
+마지막으로 $class() 함수가 어떤 식으로 구현될 수 있는지 살펴보자.
 
 ```js
-var klass = function(Parent, props) {
+var $class = function(Parent, props) {
 
 	var Child, F, i;
 
@@ -577,7 +577,7 @@ var klass = function(Parent, props) {
 };
 ```
 
-klass() 구현은 3개의 항미로운 부분으로 나뉜다.
+$class() 구현은 3개의 항미로운 부분으로 나뉜다.
 
 1. Child() 생성자 함수가 생성된다. 마지막에 이 함수가 반환되어 클래스로 사용될 것이다. `__construct` 메소드가 있다면 이 함수 안에서 호출된다. 그 전에 부모의 `__constrcut`가 있다면 `_super` 속성을 사용하여 호출한다. Model 클래스처럼 별도의 부모 클래스 없이 Object를 상속했다면 `_super`라는 속성은 정의되어 있지 않을 수 있다.
 1. 두 번째 부분은 상속을 처리한다. 앞에서 다룬 클래스 방식의 최종 버전을 사용했다. 유일하게 새로운 점은 상속 받을 클래스에 Parent가 존재하지 않을 경우 Object가 지정되도록 한 것이다.
@@ -611,7 +611,7 @@ console.log( child.name ); // 'Papa'
 ```js
 function makeObj(o) {
 	var F = function(){};
-    F.prototype = o.prototype;
+    F.prototype = o;
     return new F();
 }
 ```
@@ -666,7 +666,7 @@ Person.prototype.getName = function() {
 };
 
 // Person 생성자의 프로토타입 객체를 상속한 kid 객체 생성
-kid = makeObj(person.prototype);
+kid = makeObj(Person.prototype);
 
 console.log( typeof kid.getName ); // 'function'  [존재, 상속되었다.]
 console.log( typeof kid.name );    // 'undefined' [미존재, 상속되지 않았다.]
@@ -748,7 +748,7 @@ function extendDeep(parent, child) {
     for ( i in parent ) {
     	if ( parent.hasOwnProperty(i) ) {
         	// 객체
-            if ( typeof parent[i] === 'object' ) ) {
+            if ( typeof parent[i] === 'object' ) {
 				child[i] = toString.call( parent[i] ) === '[object Array]' ? [] : {};
                 extendDeep( parent[i], child[i] );
             } else {
