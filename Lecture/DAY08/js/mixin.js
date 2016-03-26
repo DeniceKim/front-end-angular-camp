@@ -6,6 +6,8 @@
     // 비공개 멤버
     var toString   = Object.prototype.toString,
         slice      = Array.prototype.slice,
+        forEach    = Array.prototype.forEach,
+        shift      = Array.prototype.shift,
         arr_string = '[object Array]';
 
     // 인자에 따라 기능을 변경하는 팩토리 패턴을 사용하여
@@ -59,22 +61,52 @@
         // 유사 배열인가?
         // length 속성은 소유했으나,
         // push, shift, unshift, slice, ... , forEach
+
+        // 1.
         // for문을 돌릴 수 있다.
-        var mixin_obj = {},
-            i         = 0,
-            is_deep   = typeof arguments[0] === 'boolean',
-            deep      = is_deep ? arguments[0] : false,
-            args      = is_deep ? slice.call(arguments, 1) : arguments,
-            l         = args.length;
-        for ( ; i<l; i+=1 ) {
-            // 객체를 합성(mixin)한다.
-            // 객체의 총 개수는 l 카운트 만큼 반복된다.
-            // 객체를 합성하는 일을 수행하는 함수를 소유했는가?
-            mixin_obj = extend(args[i], mixin_obj, deep);
-        }
+        // var mixin_obj = {},
+        //     i         = 0,
+        //     is_deep   = typeof arguments[0] === 'boolean',
+        //     deep      = is_deep ? arguments[0] : false,
+        //     args      = is_deep ? slice.call(arguments, 1) : arguments,
+        //     l         = args.length;
+        // for ( ; i<l; i+=1 ) {
+        //     // 객체를 합성(mixin)한다.
+        //     // 객체의 총 개수는 l 카운트 만큼 반복된다.
+        //     // 객체를 합성하는 일을 수행하는 함수를 소유했는가?
+        //     mixin_obj = extend(args[i], mixin_obj, deep);
+        // }
+
+        // 2.
         // 유사배열에 배열의 메소드를 빌려쓸 수 있다.
+        // var deep = false, mixin_obj = {};
+        // forEach.call(arguments, function(arg, index) {
+        //     if (index === 0 && (typeof arg === 'boolean') ) {
+        //         // 초기 순서
+        //         deep = arg;
+        //     } else {
+        //         // 객체 합성
+        //         extend(arg, mixin_obj, deep);
+        //     }
+        // });
+
+        // 3.
         // 유사 배열을 배열로 바꾸면..
         // 배열의 메소드를 사용할 수 있다.
+        var mixin_obj = {},
+            deep      = false,
+            args      = slice.call(arguments); // 배열화
+
+        // console.log( toString.call(args) === arr_string ); // 배열 변경된 사항 확인
+        args.forEach(function(arg, index) {
+            // 객체 합성
+            if (index === 0 && typeof arg === 'boolean') {
+                deep = arg;
+            } else {
+                extend(arg, mixin_obj, deep);
+            }
+        });
+
         return mixin_obj;
     }
 
