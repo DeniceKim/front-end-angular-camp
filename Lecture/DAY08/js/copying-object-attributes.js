@@ -1,3 +1,4 @@
+/*! copying-object-attributes.js © yamoo9.net, 2016 */
 // 코드 재사용 패턴
 // 객체 속성 복사 패턴
 // 믹스-인 패턴

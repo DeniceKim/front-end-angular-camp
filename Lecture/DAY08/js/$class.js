@@ -1,3 +1,4 @@
+/*! $class.js © yamoo9.net, 2016 */
 function $class(desc, SuperClass) {
     'use strict';
     var Class, F;

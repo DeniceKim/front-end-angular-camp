@@ -1,3 +1,5 @@
+/*! ironman.js © yamoo9.net, 2016 */
+
 // Iron Man Suite - Class Pattern
 // 참고 URL: https://goo.gl/pTqssM
 // MK1, MK2

@@ -1,3 +1,5 @@
+/*! prototype-inherit © yamoo9.net, 2016 */
+
 // 프로토타입(Prototype) 상속
 // 클래스를 사용하지 않고
 // 객체를 통해 객체를 생성하면서 능력을 부여하는 패턴
