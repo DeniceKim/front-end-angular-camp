@@ -131,14 +131,15 @@ var power_mem = new SuperModel('Power-up Memory');
 // console.log(power_mem);
 
 // Iron Man Suite - Class Pattern
+// 참고 URL: https://goo.gl/pTqssM
 // MK1, MK2
 
 // MK1 모델 설계
-// 탑승자 기본 값(Tony Stark), 사용자 탑재 가능
-// 능력: 화염방사기, 미사일(소형 로켓)
+// 탑승자(passenger) 기본 값(Tony Stark), 사용자 탑재 가능
+// 능력(ability): [ 화염방사기(flame thrower), 미사일(missile, 소형 로켓(mini rocket)) ]
 // 메소드: fire(), shot()
 
 // MK2 모델 설계 (MK1 상속)
 // 탑승자 기본 값(Tony Stark), 사용자 탑재 가능
-// 추가된 능력: 자비스, 비행, 리펄서건
+// 추가된 능력: [ 인공지능(A.I, Jarvis), 비행(flying), 리펄서건(Repulsor Beam) ]
 // 메소드: jarvice(), flying(), beam()
