@@ -13,10 +13,10 @@
         if (printCallback) {
             // prontCallback() 함수는 아래 주소에 있다.
             // js/jquery/utils/begin/01-type-testing.js
-            printCallback('10', 'slow', printResult);
+            // printCallback(7, 900, printResult);
 
             // 아래처럼 사용할 수 있도록 함수를 개선한다면?
-            // printCallback(printResult);
+            printCallback(printResult);
         }
 
     }
