@@ -2,6 +2,23 @@
 
 # DAY08
 
+### 웹 서버 구동 명령어
+
+```sh
+# Node.js 설치 유무 확인
+$ node --version
+# NPM 버전 확인
+$ npm -v
+# http-server 모듈 전역 설치 확인
+$ npm list --global http-server
+# http-server 모듈 전역 설치
+$ npm install -g http-server
+# http-server 서버 구동 명령어
+$ http-server -o -a localhost -p 9090
+```
+
+---
+
 ### 코드 재사용 패턴
 
 #### $class
