@@ -260,7 +260,7 @@ jQuery.myProps = jQuery.extend({}, {
 
 ---
 
-### 3. jQuery 커스터 플러그인
+### 3. jQuery 커스텀 플러그인
 
 #### 3.1 jQuery 플러그인 제작 프로세스 [#](http://learn.jquery.com/plugins/)
 
