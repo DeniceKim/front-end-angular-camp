@@ -12,4 +12,5 @@
 
         return combine_arr;
     }
+
 })(this.jQuery);
