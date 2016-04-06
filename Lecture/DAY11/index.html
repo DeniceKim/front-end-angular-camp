@@ -68,21 +68,23 @@
             })
             // .text('assigned jQuery plugin Method that name is text().')
             // 커스텀 플러그인을 연결(사용)
-            .emphasize();
+            .marking()
+            // 체이닝
+            .css('color', '#808080');
 
         // Case 2.
         // console.group('message_list 경우');
-        $.each( message_list, function(idx, item) {
+        // $.each( message_list, function(idx, item) {
             // console.log( idx, item );
             // $ape.eq(idx).text(item);
-        });
+        // });
         // console.groupEnd('message_list 경우');
 
         // console.group('$ape 경우');
-        $.each( $ape, function(idx, el) {
+        // $.each( $ape, function(idx, el) {
             // console.log( idx, el );
-            $ape.eq(idx).text( message_list[idx] );
-        });
+            // $ape.eq(idx).text( message_list[idx] );
+        // });
         // console.groupEnd('$ape 경우');
 
     })(this, this.jQuery);
