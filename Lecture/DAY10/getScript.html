@@ -6,25 +6,66 @@
     <title>jQuery Ajax - getScript</title>
     <script src="//code.jquery.com/jquery.min.js"></script>
     <!-- 동기 통신으로 jQuery.color 모듈 호출 -->
+    <script src="jquery/jquery.memory.js"></script>
     <!-- <script src="//code.jquery.com/color/jquery.color.js"></script> -->
     <script>
         (function($){
             'use strict';
+
+            $.fx.speeds.slower = 800;
+            $.fx.speeds.fastest = 100;
+
+
             // 비동기 호출
             //code.jquery.com/color/jquery.color.js
             function callColorModule() {
                 // 동적으로 박스를 하나 생성
-                $('<a href>', {
+                var $box = $('<div>', {
                     'class' : 'box',
+                    'text': 'box content',
+                    'attr': {
+                        // 포커스 적용
+                        'tabindex': 0
+                    },
+                    'css': {
+                        'display'         : 'flex',
+                        'justify-content' : 'center',
+                        'align-items'     : 'center',
+                        'width'           : 100,
+                        'height'          : 100,
+                        'background'      : '#ff0'
+                    },
                     'on': {
-                        'click': function(){
-                            // 생성된 박스에 애니메이션을 설정
-                            // 배경 색을 변경
-                        }
+                        'click': changeBoxBGColor,
+                        'keydown': changeBoxBGColor
                     }
                 })
-                .text('box content')
                 .appendTo('.log');
+
+            }
+
+            function changeBoxBGColor() {
+                // $.memory() 유틸리티 메소드 추가(확장)
+                var $this = $.memory(this);
+
+                var $box, $ref_box = $.data(this, '$box');
+                if ( $ref_box ) {
+                    $box = $ref_box;
+                } else {
+                    $box = $.data(this, '$box', $(this));
+                }
+                // 비동기 통신 호출
+                $.getScript('//code.jquery.com/color/jquery.color.js', function(data) {
+                    $box.animate({
+                        'background-color': '#f00'
+                    }, 'fastest');
+                });
+                // console.log(this, this.jquery);
+                // this.style.backgroundColor = '#f00';
+                // 생성된 박스에 애니메이션을 설정
+                // 배경 색을 변경
+                // console.log( $(this) );
+                // return;
             }
 
             // ready() 처리와 동일
@@ -76,7 +117,7 @@
                     // detach()를 사용해서 조작을 가한 후에 end()를 사용할 경우 복귀하지 않아 parent()를 사용한다.
                     // .parent();
 
-    console.log( $log );
+    // console.log( $log );
 
     // return;
 
