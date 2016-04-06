@@ -11,20 +11,50 @@
 
     // 플러그인 이름
     var plugin_name = 'marking',
-        colorlist = [
-            '#E22885',
-            '#BC216F',
-            '#8E1853',
-            '#560D32',
-            '#230414',
-        ];
+        defaults = {
+            'colorlist': [
+                '#E22885',
+                '#BC216F',
+                '#8E1853',
+                '#560D32',
+                '#230414'
+            ],
+            'role': 'heading'
+        },
+        reverse_count, middle_count;
+        // reverse_count = colorlist.length, // 5
+        // middle_count = Math.ceil(reverse_count/2); // 3
+
+        // console.log(reverse_count, middle_count);
 
     // 1.
     // 점 표기법(Dot Syntax)
     // $.fn.emphasize = function() {
     // 2.
     // 대괄호 표기법
-    $.fn[plugin_name] = function() {
+    $.fn[plugin_name] = function( options ) {
+
+        // 전달받거나, 제작자가 기본적으로 설정해놓은 colorlist_default를 사용한다.
+        // colorlist     = colorlist || colorlist_default;
+        var setting;
+        if (options && $.type(options) === 'object') {
+            setting = $.extend(defaults, options);
+        } else {
+            setting = defaults;
+        }
+
+        reverse_count = setting.colorlist.length, // 5
+        middle_count  = Math.ceil(reverse_count/2); // 3
+
+        // console.log(colorlist, reverse_count, middle_count);
+
+        // return $.each(this, $.proxy(function(index) {
+        //     // this === jQuery 인스턴스 객체
+        //     var $this = this.eq(index);
+        //     // 플러그인 코드 작성
+        // }), this);
+
+
 
         // 플러그인 내부에서 this가 참조하는 객체는 무엇인가?
 
@@ -59,13 +89,16 @@
         return $.each($this, function(index, el) {
             var _$this = $this.eq(index);
             _$this.css({
-                'background-color': colorlist[index],
-                'color': '#fff'
+                'background-color': setting.colorlist[index],
+                // 'color': '#fff'
+                'color': setting.colorlist[ reverse_count-- !== middle_count ? reverse_count : 0 ],
+                'padding': '1rem'
             }).attr({
                 'data-assigned-index': plugin_name + '_' + ++index,
                 'data-assigned-plugin': plugin_name,
-                'role': 'heading'
+                'role': setting.role
             });
+            // console.log( reverse_count );
         });
 
         // // 개별 적용을 위해 each()를 사용한다.

@@ -68,9 +68,12 @@
             })
             // .text('assigned jQuery plugin Method that name is text().')
             // 커스텀 플러그인을 연결(사용)
-            .marking()
+            .marking({
+                'colorlist': ['#F94B5A', '#2CFB44', '#F1F91D', '#A326F8', '#29FDDF'],
+                'role': 'list'
+            })
             // 체이닝
-            .css('color', '#808080');
+            // .css('color', '#808080');
 
         // Case 2.
         // console.group('message_list 경우');
