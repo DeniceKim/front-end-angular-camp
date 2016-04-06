@@ -36,35 +36,54 @@
 
         // 미션 1.
         // 화면에 순서대로 출력할 메시지 리스트(배열)을 생성합니다.
-        var message_list = 'jQuery 플러그인. 실체는 프로토타입 객체 확장. 누구나 손쉽게 개발 가능. 우리도 할 수 있습니다. 정말로!'.split('. ');
+        var message_list = 'jQuery 플러그인. 실체는 프로토타입 객체 확장. 누구나 손쉽게 개발 가능. 우리도 할 수 있습니다. 정말로!'.split('. '),
+            $ape         = $('.assign-plugin-el');
         // console.log( message_list );
 
         // 선택자를 통해 수집된 jQuery 인스턴스 객체가 메시지 리스트에서
         // 순서대로 해당 배열 원소를 가져와 텍스트로 할당하도록 설정합니다.
 
         // jQuery 플러그인 코드 사용
-        $('.assign-plugin-el')
+        // Case 1.
+        $ape
             // 네이티브 for문 대신 jQuery 인스턴스 메소드 each() 사용하면
             // 반복 구문을 체이닝 방식으로 처리할 수 있다.
             .each(function(idx, el) {
-                console.group('Native Code');
-                console.time('네이티브 코드 처리 속도');
-                // 네이티브 코드
-                el.textContent = message_list[idx];
-                console.timeEnd('네이티브 코드 처리 속도');
-                console.groupEnd();
+                // $(el).text( message_list[idx] );
+                $ape.eq(idx).text( message_list[idx] );
+                // console.group('Native Code');
+                // console.time('네이티브 코드 처리 속도');
+                // // 네이티브 코드
+                // el.textContent = message_list[idx];
+                // console.timeEnd('네이티브 코드 처리 속도');
+                // console.groupEnd();
 
-                console.group('jQuery Code');
-                console.time('jQuery 코드 처리 속도');
-                // jQuery 코드
-                $(el).text( message_list[idx] );
-                console.timeEnd('jQuery 코드 처리 속도');
-                console.groupEnd();
+                // console.group('jQuery Code');
+                // console.time('jQuery 코드 처리 속도');
+                // // jQuery 코드
+                // $(el).text( message_list[idx] );
+                // console.timeEnd('jQuery 코드 처리 속도');
+                // console.groupEnd();
                 // console.log( idx, el, el.jquery );
             })
             // .text('assigned jQuery plugin Method that name is text().')
             // 커스텀 플러그인을 연결(사용)
-            // .emphasize();
+            .emphasize();
+
+        // Case 2.
+        // console.group('message_list 경우');
+        $.each( message_list, function(idx, item) {
+            // console.log( idx, item );
+            // $ape.eq(idx).text(item);
+        });
+        // console.groupEnd('message_list 경우');
+
+        // console.group('$ape 경우');
+        $.each( $ape, function(idx, el) {
+            // console.log( idx, el );
+            $ape.eq(idx).text( message_list[idx] );
+        });
+        // console.groupEnd('$ape 경우');
 
     })(this, this.jQuery);
 </script>
