@@ -6,11 +6,17 @@
     <title>jQuery 플러그인 제작 패턴</title>
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <!-- jQuery 라이브러리에 의존하는 플러그인 파일 -->
-    <script src="js/plugins/jquery.plugin.js"></script>
+    <!-- <script src="js/plugins/jquery.plugin.js"></script> -->
+    <script src="js/plugins/jquery.radioClass.js"></script>
+    <style>
+        .active {
+            background: #ff0;
+        }
+    </style>
 </head>
 <body>
 
-    <header>
+    <!-- <header>
         <div class="assign-plugin-el"></div>
     </header>
 
@@ -26,8 +32,17 @@
 
     <footer>
         <div class="assign-plugin-el"></div>
-    </footer>
+    </footer> -->
 
+    <div class="wrapper-links">
+        <a href class="active">link-1</a>
+        <a href>link-2</a>
+        <a href>link-3</a>
+        <a href>link-4</a>
+        <a href>link-5</a>
+    </div>
+
+<!--
 <script>
     (function(exports, $){
         'use strict';
@@ -91,6 +106,24 @@
         // console.groupEnd('$ape 경우');
 
     })(this, this.jQuery);
+</script>
+-->
+
+<script>
+(function($){
+    'use strict';
+
+    $('.wrapper-links')
+        .children('a') // .wrapper-links a
+        .css('margin-right', '0.625rem')
+        .end() // .wrapper-links 부모 요소에 이벤트 위임
+        .on('click', function(event) {
+            // 브라우저 기본 동작 차단
+            event.preventDefault();
+            $(event.target).radioClass('active');
+        });
+
+})(this.jQuery);
 </script>
 </body>
 </html>
