@@ -8,38 +8,61 @@ abbr {
     cursor: help;
 }
 
+.demo {
+    margin-bottom: 2rem;
+}
 
 /**
  * --------------------------------
- * Custom Radio Component
+ * Custom Radio | Checkbox Component
  */
-.custom-radio + label {
+.custom-radio + label,
+.custom-checkbox + label {
     position: relative;
     display: inline-block;
     margin-right: 16px;
     text-indent: 29px;
 }
 
-.custom-radio + label::before {
+.custom-radio + label::before,
+.custom-checkbox + label::before {
     content: '';
     position: absolute;
     top: -3px;
     left: 0;
     width: 24px;
     height: 24px;
-    background: url("../images/svg/sprite-components.svg") no-repeat 0 0;
+    background-image: url("../images/svg/sprite-components.svg");
+    background-repeat: no-repeat;
+}
+
+.custom-radio + label::before {
+     background-position: 0 0;
+}
+.custom-checkbox + label::before {
+    background-position: 0 -24px;
 }
 
 .custom-radio + label:hover::before {
     background-position: -24px 0;
 }
 
+.custom-checkbox + label:hover::before {
+    background-position: -24px -24px;
+}
+
 .custom-radio:checked + label::before {
     background-position: -48px 0;
 }
 
+.custom-checkbox:checked + label::before {
+    background-position: -48px -24px;
+}
+
 .custom-radio:focus + label::before {
     background-position: -72px 0;
-/*    outline: 3px solid #333;
-    outline-offset: 2px;*/
+}
+
+.custom-checkbox:focus + label::before {
+    background-position: -72px -24px;
 }
