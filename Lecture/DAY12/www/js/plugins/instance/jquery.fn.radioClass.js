@@ -15,7 +15,7 @@
         // closest_parent에서 유효성 통과되는 기준
         // - jQuery 인스턴스 객체
         // - CSS 선택자
-        if ( !closest_parent.jquery && $.type(closest_parent) !== 'string' ) {
+        if ( closest_parent && !closest_parent.jquery && $.type(closest_parent) !== 'string' ) {
             $.error('전달받은 컨텍스트 부모는 jQuery 인스턴스 객체 또는 선택자 문자열이어야 합니다.');
         }
 
