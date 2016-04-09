@@ -1,0 +1,45 @@
+body {
+    margin-top: 20vh;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+abbr {
+    cursor: help;
+}
+
+
+/**
+ * --------------------------------
+ * Custom Radio Component
+ */
+.custom-radio + label {
+    position: relative;
+    display: inline-block;
+    margin-right: 16px;
+    text-indent: 29px;
+}
+
+.custom-radio + label::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: url("../images/svg/sprite-components.svg") no-repeat 0 0;
+}
+
+.custom-radio + label:hover::before {
+    background-position: -24px 0;
+}
+
+.custom-radio:checked + label::before {
+    background-position: -48px 0;
+}
+
+.custom-radio:focus + label::before {
+    background-position: -72px 0;
+/*    outline: 3px solid #333;
+    outline-offset: 2px;*/
+}
