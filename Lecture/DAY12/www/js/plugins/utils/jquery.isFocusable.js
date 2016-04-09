@@ -23,7 +23,7 @@
 
         // 4.
         // 이전 포커스 요소와 target 요소를 비교하여 결과를 반환한다.
-        var result = (pre_focusable_el !== ( target.jquery ? target[0] : target ));
+        var result = doc.activeElement === ( target.jquery ? target[0] : target );
 
         // 5.
         // 이전 포커스에 포커스 상태를 돌려준다. (복귀)

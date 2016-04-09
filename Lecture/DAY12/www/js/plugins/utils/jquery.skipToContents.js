@@ -9,7 +9,7 @@
         function _skipToContents(evt) {
             // 기본 동작 차단
             // url 뒤에 hash(#)를 붙이지 않음
-            evt.preventDefault();
+            // evt.preventDefault();
             // evt.target 요소의 href 속성 값을 참조
             var _this = evt.target;
             var target_id = _this.getAttribute('href');
@@ -20,19 +20,23 @@
             var $target = $.memory(_this, 'target_id', $(target_id));
 
             // console.log( $target.attr('id') );
-            console.log($.isFocusable($target));
+            // console.log($.isFocusable($target));
             // console.log($.isFocusable( document.querySelector('.test')));
-
-            return;
             // $target 요소는 포커스가 가능한가?
             if ( !$.isFocusable($target) ) {
-
-            } else {
-                // $target 객체를 포커싱한다.
-                $target.focus();
+                $target.attr('tabindex', -1);
             }
+            // $target 객체를 포커싱한다.
+            $target.focus();
 
         };
+
+        function ariaHiddenStateChangeFalse() {
+            this.setAttribute('aria-hidden', false);
+        }
+        function ariaHiddenStateChangeTrue() {
+            this.setAttribute('aria-hidden', true);
+        }
 
         // 1.
         // 검증
@@ -42,10 +46,25 @@
         // 2.
         // 스킵 내비게이션을 설정할 부모 요소 참조
         // jQuery 인스턴스 객체화
-        var $wrapper = $(wrapper);
+        var $wrapper = $(wrapper),
+            $wrapper_links = $wrapper.find('a');
 
         // $wrapper 내부의 모든 a 요소에 클래스를 설정
-        $wrapper.find('a').addClass('a11y-hidden focusable');
+        $wrapper_links.addClass('a11y-hidden focusable');
+
+        // WAI-ARIA 역할 설정
+        if($wrapper[0].nodeName.toLowerCase() !== 'nav') {
+            $wrapper.attr('role', 'navigation');
+        }
+
+        // WAI-ARIA 초기 속성(상태) 설정
+        $wrapper_links.attr('aria-hidden', true);
+
+        // WAI_ARIA 상태 변경 이벤트 바인딩
+        $wrapper_links.on({
+            'focus': ariaHiddenStateChangeFalse,
+            'blur': ariaHiddenStateChangeTrue
+        });
 
         // 이벤트 바인딩 (이벤트 위임)
         $wrapper.on('click', 'a', _skipToContents);
