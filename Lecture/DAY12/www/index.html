@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>Develop jQuery Plugin</title>
+    <link rel="stylesheet" href="css/a11y.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/plugins/utils/jquery.logError.js"></script>
+    <script src="js/plugins/utils/jquery.memory.js"></script>
+    <script src="js/plugins/instance/jquery.fn.radioClass.js"></script>
+</head>
+<body>
+
+<div class="button-list">
+    <button type="button">button 1</button>
+    <button type="button">button 2</button>
+    <button type="button">button 3</button>
+</div>
+
+<nav class="demo-navi">
+    <ul>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 2</a></li>
+        <li><a href="#">link 3</a></li>
+        <li><a href="#">link 4</a></li>
+    </ul>
+</nav>
+
+<script>
+(function(exports, $){
+    'use strict';
+
+    function marking(e) {
+        // e.target -> button
+        // this, e.currestTarget -> div
+        // 1.
+        // 검증
+        // e.target 요소의 이름이 A라면?
+        // 기본 동작 차단
+        if ( e.target.nodeName === 'A' ) {
+            e.preventDefault();
+        }
+        var $this = $.memory(e.target);
+        $this.radioClass('mark');
+    }
+
+    $('.button-list').on('click', 'button', marking);
+
+    exports.marking = marking;
+})(this, this.jQuery);
+
+(function(exports, $){
+    'use strict';
+    $('nav.demo-navi').on('click', 'a', exports.marking);
+})(this, this.jQuery);
+</script>
+</body>
+</html>
