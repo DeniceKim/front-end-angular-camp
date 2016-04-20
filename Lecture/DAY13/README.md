@@ -2,6 +2,13 @@
 
 # DAY13
 
+### 디자인 트렌드 분석
+
+- 사운드는 Flash의 전유물일까? [cmiscm.com](http://cmiscm.com/)
+- 사용자에게 반응성을 제공하라. [구글 머터리얼 디자인 리플 이펙트](https://www.google.com/design/spec/animation/responsive-interaction.html)
+
+-
+
 ### jQuery 플러그인 제작 Part. 3
 
 `jquery.ui-ripple.css`
@@ -198,3 +205,9 @@
 
 })(this, this.jQuery);
 ```
+
+-
+
+### 참고 CSS 프레임워크
+
+- [구글 Material 디자인 기반의 반응형 Front-End 프레임워크](http://materializecss.com/)
