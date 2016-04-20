@@ -63,8 +63,15 @@
 
 			// 2. uiRipple Ink 요소를 동적으로 추가
 			$('<span>', {
-				'class': 'yamoo9-ui-ripple-ink'
+				'class': 'yamoo9-ui-ripple-ink',
+				'css': {
+					'background': '#7045CF',
+					'width': '100px',
+					'height': '100px',
+				}
 			})
+			// 리플의 부모 요소($ripple_parent)의 마지막 자식으로 추가
+			.appendTo($ripple_parent);
 		}
 
 	};
@@ -72,9 +79,10 @@
 	// jquery.fn.uiRipple 플러그인 기본 옵션 객체
 	defaults = {
 		'prefix': 'yamoo9',
-		'containerClass': defaults.prefix + '-ui-ripple-container',
-		'parentClass': defaults.prefix + '-ui-ripple-parent',
-		'inkClass': defaults.prefix + '-ui-ripple-ink',
+		'containerClass': 'ui-ripple-container',
+		'parentClass': 'ui-ripple-parent',
+		'inkClass': 'ui-ripple-ink',
+		'color': '#7045CF'
 	};
 
 	// jquery.fn.uiRipple 정의
