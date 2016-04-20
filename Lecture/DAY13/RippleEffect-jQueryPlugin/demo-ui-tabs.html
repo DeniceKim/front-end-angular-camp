@@ -13,22 +13,21 @@
 </head>
 <body>
 
+	<!-- jQuery 『ui-ripple』 플러그인 데모 -->
 	<ul class="demo">
 		<li><a href="">Home</a></li>
 		<li><a href="">About</a></li>
 		<li><a href="">Works</a></li>
 	</ul>
 
-
-
 <script>
 (function($){
 	'use strict';
 	$('.demo').uiRipple({
-		'color': '#7045CF',
-		// 'sound_source': 'js/plugins/ui/media/tic.mp3'
-		// 'sound': true,
-		// 'time': 0.3
+		// 'color': '#7045CF',
+		'sound_source': 'js/plugins/ui/media/tic.mp3',
+		// 'sound': false
+		// 'time': 1.2
 	});
 })(this.jQuery);
 </script>
