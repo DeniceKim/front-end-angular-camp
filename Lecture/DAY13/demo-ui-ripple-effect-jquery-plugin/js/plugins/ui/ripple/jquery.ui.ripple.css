@@ -10,6 +10,14 @@
     position: relative;
     overflow: hidden;
 }
+/* uiRipple 플러그인이 설정된 a 요소 */
+.yamoo9-ui-ripple {
+    /* 사용자 인터페이스 설정 */
+    -webkit-user-select: none;
+    user-select: none;
+    /* a 요소 블록화 */
+    display: block;
+}
 
 /* uiRipple 플러그인이 설정된 a 요소의 (다음) 형제 요소 */
 .yamoo9-ui-ripple-ink {
