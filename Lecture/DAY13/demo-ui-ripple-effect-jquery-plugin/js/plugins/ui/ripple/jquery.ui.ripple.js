@@ -3,7 +3,40 @@
 	'use strict';
 
 	// 스코프 내에 변수 선언 구간
-	var defaults, plugin;
+	var defaults, plugin, soundObj;
+
+	// 오디오를 불러오고 재생하는 객체를 생성
+	soundObj = {
+		'init': function(source) {
+			// 전달인자 유효성 검사
+			if ( !source || typeof source !== 'string' ) {
+				return console.error('오디오 음원 주소는 문자열로 전달해야 합니다.');
+			}
+			// 오디오 객체를 생성자를 통해 생성한다.
+			this.audio = new Audio();
+			// 생성된 오디오 객체에 음원을 연결한다.
+			this.audio.setAttribute('src', source);
+
+			// 메소드 체이닝
+			return this;
+
+			// 오디오 파일을 다운로드 받아 재생할 준비가 되면 재생
+			this.audio.addEventListener('canplay', function() {
+				this.play();
+			});
+		},
+		'play': function() {
+			this.audio.play();
+			return this;
+		},
+		'stop': function() {
+			// 네이티브 JS에서는 오디오 객체애 stop() 메소드는 없음.
+			// this.audio.stop();
+			this.audio.pause(); // 일시 정지
+			this.audio.currentTime=0;
+			return this;
+		}
+	};
 
 	// 플러그인 객체
 	plugin = {
@@ -14,6 +47,15 @@
 
 			// this 참조 변수
 			var $this = this;
+
+			// 임시 테스트, 사운드 재생
+			// soundObj
+			// 	.init('media/tong.mp3')
+			// 	.play();
+			// // soundObj.play();
+
+			// 사운드를 재생할 준비를 마친다.
+			soundObj.init('media/tic.mp3');
 
 			// 1. 플러그인 컨테이너 요소에 식별자 클래스 속성 추가
 			$this.addClass('yamoo9-ui-ripple-container');
@@ -73,6 +115,7 @@
 					'width': dimension,
 					'height': dimension,
 					'background': '#7045CF',
+					'animation-duration': 0.2+'s'
 				}
 			})
 			// 리플의 부모 요소($ripple_parent)의 마지막 자식으로 추가
@@ -85,9 +128,12 @@
 			$.each($ripple, function(index) {
 				var _$ripple = $ripple.eq(index);
 				_$ripple.on({
-					'click': $.proxy(activeRipple, _$ripple)
+					'click': $.proxy(activeRipple, _$ripple),
+					// 'click': activeRipple.bind(_$ripple),
+					'keyup': $.proxy(setA11yFocusDisplay, _$ripple),
+					'blur': $.proxy(unsetA11yFocusDisplay, _$ripple)
 				});
-			})
+			});
 
 			// 이벤트 핸들러 정의
 			function activeRipple(e) {
@@ -129,6 +175,23 @@
 				// 사용자가 a를 클릭했을 때, $ink에 animate 클래스 속성 추가
 				$ink.addClass('animate');
 
+				// 사운드 재생
+				// 여러 번 클릭할 경우, 기존 재생되던 음원은 중지를 해야 한다.
+				soundObj
+					.stop()
+					.play();
+
+			}
+
+			function setA11yFocusDisplay(e) {
+				// this === jQuery 플러그인이 연결된 a 인스턴스 객체
+				// a의 부모 요소에 overlfow: visible;로 처리한다.
+				this.parent().hide().css('overflow', 'visible').show();
+			}
+
+			function unsetA11yFocusDisplay(e) {
+				// this === jQuery 플러그인이 연결된 a 인스턴스 객체
+				this.parent().hide().css('overflow', 'hidden').show();
 			}
 
 		}
@@ -137,12 +200,24 @@
 
 	// jquery.fn.uiRipple 플러그인 기본 옵션 객체
 	defaults = {
+		// 회사/브랜드 접두사
 		'prefix': 'yamoo9',
+		// 컨테이너 식별자
 		'containerClass': 'ui-ripple-container',
+		// 리플 래퍼 식별자
 		'parentClass': 'ui-ripple-parent',
+		// 리플 식별자
 		'rippleClass': 'ui-ripple',
+		// 리플 잉크 식별자
 		'inkClass': 'ui-ripple-ink',
-		'color': '#7045CF'
+		// 리플 잉크 색상
+		'color': '#7045CF',
+		// 효과음 재생 여부
+		'sound': true,
+		// 효과음 음원 주소
+		'sound_source': 'media/tic.mp3',
+		// 리플 잉크의 퍼짐 속도 (초 단위)
+		'time': 0.6
 	};
 
 	// jquery.fn.uiRipple 정의
