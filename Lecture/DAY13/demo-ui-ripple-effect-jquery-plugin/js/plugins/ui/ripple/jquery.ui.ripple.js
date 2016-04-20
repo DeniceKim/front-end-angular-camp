@@ -27,11 +27,6 @@
 
 				// 리플 이펙트 구성 설정
 				plugin.rippleSetting( _$this );
-
-				// 이벤트 바인딩
-
-				// 이벤트 핸들러 정의
-
 			} );
 
 		},
@@ -41,9 +36,11 @@
 			// 플러그인이 연결된 컨테이너 객체
 			// $container
 
+			var $ripple, $ripple_parent, $ink, dimension;
+
 			// 컨테이너 내부의 a 요소를 찾아 변수에 참조
-			var $ripple        = $container.find('a'),
-				$ripple_parent = $ripple.parent(); // a의 부모 요소
+			$ripple = $container.find('a');
+			$ripple_parent = $ripple.parent(); // a의 부모 요소
 
 			// 1. 부모 요소에 스타일 설정
 			// position: relative;
@@ -61,17 +58,54 @@
 			// 방법 2. 부모 요소에 식별자 클래스 속성 추가
 			$ripple_parent.addClass('yamoo9-ui-ripple-parent');
 
+			// 부모 $ripple_parent의 가로/세로 중 긴 길이 값을 dimension 변수에 참조
+			dimension = Math.max($ripple_parent.outerWidth(), $ripple_parent.outerHeight());
+
+			// console.log( 'dimension:', dimension );
+
 			// 2. uiRipple Ink 요소를 동적으로 추가
-			$('<span>', {
+			$ink = $('<span>', {
 				'class': 'yamoo9-ui-ripple-ink',
 				'css': {
+					'width': dimension,
+					'height': dimension,
 					'background': '#7045CF',
-					'width': '100px',
-					'height': '100px',
 				}
 			})
 			// 리플의 부모 요소($ripple_parent)의 마지막 자식으로 추가
 			.appendTo($ripple_parent);
+
+			// 이벤트 바인딩
+			// 개별 바인딩을 위해 반복문을 사용한다.
+			// 이벤트 연결할 때 activeRipple 함수 내부의 this가 참조할 수 있는 값을
+			// $.proxy() 메소드를 사용해서 우회한다.
+			$.each($ripple, function(index) {
+				var _$ripple = $ripple.eq(index);
+				_$ripple.on({
+					'click': $.proxy(activeRipple, _$ripple)
+				});
+			})
+
+			// 이벤트 핸들러 정의
+			function activeRipple(e) {
+				var x, y;
+				e.stopPropagation(); // 이벤트 전파 멈춤
+				e.preventDefault(); // 기본 동작 차단
+				// this는 무엇을 참조하나?
+				// this === 문서 객체
+				// 결론. jQuery 메소드를 사용할 수 없다...
+				// 팩토리를 사용하면 성능 저하.. 우려
+				// 네이티브 자바스크립트를 사용하거나...
+				// 다른 방법을 모색해야 한다.
+				console.log('clicked $ripple', this);
+
+				// 마우스 좌표 x, y 값을 확인
+				console.log('e.pageX:', e.pageX, 'e.pageY:', e.pageY);
+				x = e.pageX - this.parent().offset().left;
+				y = e.pageY - this.parent().offset().top;
+				console.log('x:', x, 'y:', y);
+			}
+
 		}
 
 	};

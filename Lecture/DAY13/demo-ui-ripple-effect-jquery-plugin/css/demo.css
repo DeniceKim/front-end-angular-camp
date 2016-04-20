@@ -1,5 +1,14 @@
 /*! demo.css © yamoo9.net, 2016 */
 
+body {
+    margin: 6rem;
+}
+
+hr {
+  margin: -1px 0;
+  border: 1px solid #eaeaea;
+}
+
 /* 내비게이션 내부의 목록 초기화 */
 nav ul {
     list-style: none;
