@@ -21,9 +21,9 @@
 			return this;
 
 			// 오디오 파일을 다운로드 받아 재생할 준비가 되면 재생
-			this.audio.addEventListener('canplay', function() {
-				this.play();
-			});
+			// this.audio.addEventListener('canplay', function() {
+			// 	this.play();
+			// });
 		},
 		'play': function() {
 			this.audio.play();
@@ -115,7 +115,7 @@
 					'width': dimension,
 					'height': dimension,
 					'background': '#7045CF',
-					'animation-duration': 0.2+'s'
+					'animation-duration': 0.4+'s'
 				}
 			})
 			// 리플의 부모 요소($ripple_parent)의 마지막 자식으로 추가

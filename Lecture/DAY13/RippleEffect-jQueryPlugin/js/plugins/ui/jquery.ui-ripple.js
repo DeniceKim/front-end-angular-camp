@@ -104,10 +104,17 @@
 			}
 			// 키보드 포커스 접근성 설정 함수
 			function setA11yFocusState() {
+				this.next().css('opacity', 0);
+				if ( !this.data('org_bg_color') ) {
+					this.data('org_bg_color', this.css('background'));
+				}
+				this.css('background', '#ff0');
 				this.parent().css('overflow', 'visible');
 			}
 			// 키보드 포커스 접근성 해제 함수
 			function unsetA11yFocusState() {
+				this.next().css('opacity', 1);
+				this.css('background', this.data('org_bg_color'));
 				this.parent().css('overflow', 'hidden');
 			}
 
