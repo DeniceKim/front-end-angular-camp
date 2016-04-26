@@ -11,5 +11,7 @@ var model = require('./model'),
 // };
 
 exports.action = function() {
-    return model.load() + view.render();
+    return ( model.load ? model.load() : 'model dont have load method' ) + view.render();
 };
+
+exports.memory = [];
