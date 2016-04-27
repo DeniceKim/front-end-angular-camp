@@ -2,6 +2,17 @@
 
 # DAY15
 
+### CLI 명령어 정리
+
+```sh
+$ npm install {package_name}          # NPM을 사용하여 패지키 설치하는 명령어
+$ npm install --global {package_name} # 전역(Global)에 NPM 모듈 설치
+$ npm init                            # 프로젝트 관리를 위한 package.json 파일 생성(질문에 답변)
+$ npm init -y                         # package.json 파일 생성시 (질문을 PASS!)
+```
+
+-
+
 ### 프론트엔드 빌드 환경
 
 ![Node.js](Assets/nodejs.png)

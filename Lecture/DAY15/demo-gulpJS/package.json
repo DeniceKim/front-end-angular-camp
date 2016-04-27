@@ -1,0 +1,8 @@
+{
+  "name": "demo-gulp-automate-building-tool",
+  "version": "0.0.1",
+  "description": "GulpJS를 활용하여 업무 자동화 프로그래밍.",
+  "keywords": ["gulp", "업무", "자동화"],
+  "author": "yamoo9 <yamoo9@naver.com>",
+  "license": "ISC"
+}
