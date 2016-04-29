@@ -312,38 +312,3 @@ $ npm i -D gulp-load-plugins
 // gulp-if 의존모듈 로드
 var $ = require('gulp-load-plugins')({'lazy': true});
 ```
-
--
-
-### Browserify 모듈 설치 및 설정
-
-- **[browserify](https://www.npmjs.com/package/browserify)**<br>
-    CommonJS 진영 모듈 관리를 브라우저 기반에서도 사용할 수 있도록 번들링.
-- **[vinyl-source-stream](https://www.npmjs.com/package/vinyl-source-stream)**<br>
-    Browserify 스트림(stream) 데이터를 Gulp에서 사용할 수 있도록 변경.
-- **[vinyl-buffer](https://www.npmjs.com/package/vinyl-buffer)**<br>
-    Browserify 스트림(stream) 데이터를 Gulp에서 사용할 수 있도록 변경 시, 충격 완화(buffering).
-- **[gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)**<br>
-    소스맵을 생성.
-
-```sh
-$ npm i -D browserify vinyl-source-stream vinyl-buffer gulp-sourcemaps
-```
-
-```js
-var browserify = require('browserify');
-var source     = require('vinyl-source-stream');
-var buffer     = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
-
-gulp.task('browserify', ()=> {
-    var b = browserify( './src/js/app.js' );
-    return b
-        .bundle()
-        .pipe( source( 'app-bundle.js' ) )
-        .pipe( buffer() )
-        .pipe( sourcemaps.init({ loadMaps: true }) )
-        .pipe( sourcemaps.write('./') )
-        .pipe( gulp.dest( './build/js' ) );
-});
-```
