@@ -292,8 +292,11 @@ gulp.task('bundle:js', ()=> {
 
 ```js
 // 의존 모듈 로드
-var watchify   = require('watchify');
-var assign     = require('lodash.assign');
+var watchify = require('watchify');
+var assign   = require('lodash.assign');
+
+// 옵션 덮어쓰기
+var opts = assign({}, watchify.args, config.browserify.options);
 
 // Watchify 래핑된 Browserify 객체
 var bundler = watchify(browserify(opts));

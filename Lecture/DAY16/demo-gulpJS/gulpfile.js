@@ -31,35 +31,8 @@ gulp.task('default', ()=> {
 // --------------------------------------------------
 // 번들링(Bundling): Javascript 업무 등록
 // --------------------------------------------------
-// gulp.task('bundle:js', ()=> {
-//   // 번들러 옵션 설정
-//   var bundler = browserify(config.browserify.options);
-
-//   return bundler
-//     .bundle()
-//     .pipe(source(config.browserify.output_filename))
-//     .pipe(buffer())
-//     // 오류 발생 시, 콘솔에 오류 메시지 출력
-//     .on('error', $.util.log.bind($.util, 'Browserify 오류'))
-//     // 소스맵 초기화 (이미 소스맵 파일 존재하면 해당 파일을 읽어서 속도를 향상)
-//     .pipe($.sourcemaps.init({'readMaps': config.browserify.read_sourcemap}))
-//     // 소스맵 쓰기
-//     .pipe($.sourcemaps.write(config.browserify.sourcemaps))
-//     .pipe(gulp.dest(config.browserify.output));
-// });
-
-// // 번들링 관찰 업무
-// gulp.task('bundle:watch', ()=> {
-//   // gulp.watch([관찰할 파일 목록], [처리할 업무]);
-//   gulp.watch([config.browserify.options.entries], ['bundle:js']);
-// });
-
-// Gulp + Browserify + Watchify + lodash.assign
-// 옵션 믹스인
-
-// console.log('w: ', watchify.args);
+// 옵션 덮어쓰기
 var opts = assign({}, watchify.args, config.browserify.options);
-// console.log('o: ', opts);
 
 // Watchify 래핑된 Browserify 객체
 var bundler = watchify(browserify(opts));
