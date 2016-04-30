@@ -139,6 +139,13 @@ $ browserify app.js -d | exorcist app-bundle.js.map > app-bundle.js
 
 -
 
+###### 참고 글
+
+- [npm VS bower VS browserify VS gulp VS grunt VS webpack](http://stackoverflow.com/questions/35062852/npm-vs-bower-vs-browserify-vs-gulp-vs-grunt-vs-webpack)
+- [gulp VS grunt VS webpack 비교](http://stackshare.io/stackups/gulp-vs-grunt-vs-webpack)
+
+-
+
 #### 0. Browserify 사용을 위해 설치가 필요한 모듈
 
 - **[browserify](https://www.npmjs.com/package/browserify)**<br>
@@ -253,7 +260,7 @@ module.exports = config;
 
 -
 
-#### 4. `gulpfile.js` 파일 수정
+#### 5. `gulpfile.js` 파일 수정
 
 ```js
 // --------------------------------------------------
@@ -279,9 +286,43 @@ gulp.task('bundle:js', ()=> {
 });
 ```
 
+#### 6. Watchify를 사용하여 Browserify 속도 개선
+
+[Fast browserify builds with watchify 레시피](https://github.com/gulpjs/gulp/blob/master/docs/recipes/fast-browserify-builds-with-watchify.md)를 참고하여 문제 해결.
+
+```js
+// 의존 모듈 로드
+var watchify   = require('watchify');
+var assign     = require('lodash.assign');
+
+// Watchify 래핑된 Browserify 객체
+var bundler = watchify(browserify(opts));
+
+// Bundle 업무를 수행하는 함수
+var bundleHandler = () => {
+  return bundler
+    .bundle()
+    .pipe(source(config.browserify.output_filename))
+    .pipe(buffer())
+    // 오류 발생 시, 콘솔에 오류 메시지 출력
+    .on('error', $.util.log.bind($.util, 'Browserify 오류'))
+    // 소스맵 초기화 (이미 소스맵 파일 존재하면 해당 파일을 읽어서 속도를 향상)
+    .pipe($.sourcemaps.init({'readMaps': config.browserify.read_sourcemap}))
+    // 소스맵 쓰기
+    .pipe($.sourcemaps.write(config.browserify.sourcemaps))
+    .pipe(gulp.dest(config.browserify.output));
+};
+
+// Gulp 업무 등록
+gulp.task('bundle:js', bundleHandler);
+// 이벤트 처리(감지)
+bundler.on('update', bundleHandler);
+bundler.on('log', $.util.log);
+```
+
 -
 
-#### 4. 옵션(`--min`)에 따라 **번들** → **압축** 프로세스 설정
+#### 7. 옵션(`--min`)에 따라 **번들** → **압축** 프로세스 설정
 
 [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) 개발 의존 모듈을 설치.
 

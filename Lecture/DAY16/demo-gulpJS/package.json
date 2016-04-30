@@ -19,8 +19,10 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.1.0",
+    "lodash.assign": "^4.0.8",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0",
     "yargs": "^4.6.0"
   },
   "dependencies": {
