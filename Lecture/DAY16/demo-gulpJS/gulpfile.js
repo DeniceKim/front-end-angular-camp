@@ -50,3 +50,47 @@ gulp.task('bundle:js', bundleHandler);
 // 이벤트 처리(감지)
 bundler.on('update', bundleHandler);
 bundler.on('log', $.util.log);
+
+// --------------------------------------------------
+// 프리프로세싱(Pre-Processing): Sass → CSS 업무 등록
+// --------------------------------------------------
+gulp.task('sass', ()=> {
+
+  log('Sass → CSS 변환');
+
+  return gulp
+    .src('./test/*.s+(a|c)ss')
+    // 소스맵 초기화
+    .pipe( $.sourcemaps.init({'readMaps':true}) )
+    // Sass 컴파일
+    .pipe( $.sass({
+      'outputStyle': 'expanded', // nested, compact, expanded, compressed
+      'indentType': 'space', // 'tab', 'space'
+      'indentWidth': 2,
+      // 수치 정확도 (소수점 이하 자리 수)
+      'precision'   : 4,
+      // 소스맵 작성 설정
+      'sourceMap'   : true
+    }).on('error', $.sass.logError) )
+    // 벤더 프리픽스 자동으로 처리
+    .pipe( $.autoprefixer({'browselist': ['> 5% in KR', 'ff ESR']}) )
+    // 소스맵 쓰기
+    .pipe( $.sourcemaps.write('./') )
+    // 스트림 데이터 파일을 목적지에 실제 파일로 쓰기
+    .pipe( gulp.dest('./.tmp/css') );
+
+});
+
+gulp.task('sass:lint', ()=> {
+  log('Sass 문법 검수');
+  return gulp.src('./test/*.{sass,scss}')
+    .pipe($.sassLint())
+    .pipe($.sassLint.format())
+    .pipe($.sassLint.failOnError());
+});
+
+gulp.task('sass:watch', ['sass', 'sass:lint'], ()=> {
+  gulp.watch(['./test/*.{sass,scss}'], ['sass']);
+});
+
+
