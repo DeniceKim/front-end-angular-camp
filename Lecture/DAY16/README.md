@@ -58,7 +58,7 @@ function log(logData, color) {
   if (!logData) { return console.error('전달인자가 존재하지 않습니다.'); }
 
   // 조건 1. '문자열'
-  if (typeof logData === 'string') {
+  if (type(logData) === 'string') {
     _log(logData, color);
   }
 
