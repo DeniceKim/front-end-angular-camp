@@ -49,7 +49,10 @@ function _log(data, color) {
 }
 
 // 공개 모듈(함수)
-function log(logData = null, color = 'blue') {
+function log(logData, color) {
+
+  // color 전달인자 초기화
+  color = color || 'blue';
 
   // 유효성 검사
   if (!logData) { return console.error('전달인자가 존재하지 않습니다.'); }
@@ -627,3 +630,19 @@ gulp.task('inject', ['wiredep', 'sass'], ()=> {
         .pipe(gulp.dest('목적지 설정'));
 });
 ```
+
+<!--
+Sass 최적화 전략
+https://item4.github.io/2016-04-26/Strategy-for-SCSS-Optimization/
+-->
+
+<!--
+http://www.michaelbromley.co.uk/blog/425/automatic-import-of-lesssass-files-with-gulp
+inject(gulp.src(['../**/*.less'], {read: false, cwd: 'src/styles/'}), {
+  starttag: '/* inject:imports */',
+  endtag: '/* endinject */',
+  transform: function (filepath) {
+    return '@import ".' + filepath + '";';
+  }
+})
+-->
