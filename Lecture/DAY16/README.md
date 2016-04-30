@@ -117,9 +117,12 @@ SublimeLinter
 
 ##### 소스맵을 외부에 분리하는 명령어
 
-[Browserify - external source maps](https://github.com/substack/node-browserify#external-source-maps)
+- [Browserify - external source maps](https://github.com/substack/node-browserify#external-source-maps)
+- [Exorcist](https://github.com/thlorenz/exorcist)
 
 ```sh
+# exorcist 모듈 글로벌 설치 (의존)
+$ npm install --global exorcist
 # --debug (-d) = 소스맵 생성 옵션, exorcist = 엑소시스트(퇴마사)
 $ browserify app.js -d | exorcist app-bundle.js.map > app-bundle.js
 ```
