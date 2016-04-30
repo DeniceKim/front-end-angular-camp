@@ -2,17 +2,21 @@
 'use strict';
 
 // 프로젝트 경로
-var src  = './src/';
-var tmp  = './.tmp';
-var test = './test/';
+var src   = './src/';
+var dist  = './dist/';
+var build = './build/';
+var tmp   = './.tmp';
+var test  = './test/';
 
 // 공개 모듈 등록
 var config = {
 
   // 경로
-  'src': src,
-  'tmp': tmp,
-  'test': test,
+  'src'   : src,
+  'dist'  : dist,
+  'build' : build,
+  'tmp'   : tmp,
+  'test'  : test,
 
   // Browserify 설정
   'browserify': {

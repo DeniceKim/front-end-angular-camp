@@ -286,6 +286,8 @@ gulp.task('bundle:js', ()=> {
 });
 ```
 
+-
+
 #### 6. Watchify를 사용하여 Browserify 속도 개선
 
 [Fast browserify builds with watchify 레시피](https://github.com/gulpjs/gulp/blob/master/docs/recipes/fast-browserify-builds-with-watchify.md)를 참고하여 문제 해결.

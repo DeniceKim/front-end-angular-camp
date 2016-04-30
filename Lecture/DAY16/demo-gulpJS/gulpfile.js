@@ -17,16 +17,7 @@ var $ = require('gulp-load-plugins')({'lazy': true});
 
 // --------------------------------------------------
 // 기본 업무 등록
-// gulp.task('default', []);
-gulp.task('default', ()=> {
-  // 1. log() 함수의 첫번째 인자가 문자인 경우
-  log('gulp 업무 시작');
-  // 2. log() 함수의 첫번째 인자가 객체인 경우
-  // log({
-  //   'first': 'Gulp 업무 시작!!!',
-  //   'second': '테스트 중....'
-  // }, 'red');
-});
+gulp.task('default', ['bundle:js']);
 
 // --------------------------------------------------
 // 번들링(Bundling): Javascript 업무 등록
@@ -43,8 +34,10 @@ var bundleHandler = () => {
     .bundle()
     .pipe(source(config.browserify.output_filename))
     .pipe(buffer())
-    // 오류 발생 시, 콘솔에 오류 메시지 출력
-    .on('error', $.util.log.bind($.util, 'Browserify 오류'))
+      // 오류 발생 시, 콘솔에 오류 메시지 출력
+      .on('error', $.util.log.bind($.util, 'Browserify 오류'))
+      // 조건 --min 옵션 값(true, false)에 따라 압축(Uglify) 처리
+      .pipe($.if(yargs.min, $.uglify()))
     // 소스맵 초기화 (이미 소스맵 파일 존재하면 해당 파일을 읽어서 속도를 향상)
     .pipe($.sourcemaps.init({'readMaps': config.browserify.read_sourcemap}))
     // 소스맵 쓰기
