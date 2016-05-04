@@ -82,6 +82,26 @@ var config = {
     // ------------------------------------------
     // 컴파일 된 파일 생성 위치 설정
     'del': [tmp + 'css']
+  },
+
+  // Wiredep 설정
+  'wiredep': {
+    'index': test+ 'index.html',
+    'output': test,
+    'getWiredepDefaultOptions': ()=> {
+      // wiredep 옵션 객체
+      // https://github.com/taptapship/wiredep#configuration
+      return {
+        'bowerJson'  : require('./bower.json'),
+        'directory'  : './bower_components',
+        'ignorePath' : '..'
+      };
+    },
+    'js': [
+      test + '**/*.module.js',
+      test + '**/*.js',
+      '!'+test + '**/*.spec.js',
+    ]
   }
 
 };

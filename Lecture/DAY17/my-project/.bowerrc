@@ -1,0 +1,6 @@
+{
+  // Bower 모듈이 설치되는 디렉토리 이름
+  "directory" : "bower_components",
+  // 의존 모듈 관리 JSON 파일 이름
+  "json"      : "bower.json"
+}
