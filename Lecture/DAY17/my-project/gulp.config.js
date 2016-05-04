@@ -36,6 +36,52 @@ var config = {
     'sourcemaps': './',
     // 이미 존재하는 소스맵 파일 읽기 설정
     'read_sourcemap': true
+  },
+
+  // Sass 설정
+  'sass': {
+    'src': ['./test/*.s+(a|c)ss'],
+    'output': './.tmp/css',
+    'options': {
+      // CSS 출력 스타일 설정
+      // nested, compact, expanded, compressed
+      'outputStyle': 'expanded',
+      // 인덴트(들여쓰기) 설정
+      // 'tab', 'space'
+      'indentType': 'space',
+      // 인덴트 폭 값 설정
+      // 2~10
+      'indentWidth': 2,
+      // 수치 정확도 (소수점 이하 자리 수)
+      'precision'   : 4,
+      // 소스맵 작성 설정
+      'sourceMap'   : true
+    },
+    // ------------------------------------------
+    // Autoprefixer 설정
+    'autoprefixer': {
+      'browselist': [
+        // 지역 설정
+        '> 5% in KR',
+        // 데스크탑 환경 설정
+        'ie >= 11',
+        'chrome >= 45',
+        'ff >= 40',
+        'safari >= 7',
+        'opera >= 23',
+        // 모바일 환경 설정
+        'android >= 4.4',
+        'ios >= 8',
+        'ie_mob >= 10',
+        'bb >= 10'
+      ]
+    },
+    // ------------------------------------------
+    // 소스맵 위치 설정
+    'sourcemaps': './',
+    // ------------------------------------------
+    // 컴파일 된 파일 생성 위치 설정
+    'del': [tmp + 'css']
   }
 
 };
