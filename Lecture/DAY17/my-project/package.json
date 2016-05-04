@@ -7,6 +7,9 @@
     "업무",
     "자동화"
   ],
+  "scripts": {
+    "server": "http-server -a localhost -p 9090 -o"
+  },
   "author": "yamoo9 <yamoo9@naver.com>",
   "license": "ISC",
   "devDependencies": {

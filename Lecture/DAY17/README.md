@@ -685,7 +685,7 @@ gulp.task('inject', ['wiredep', 'sass'], ()=> {
 **CLI**
 
 ```sh
-$ node run server
+$ npm run server
 ```
 
 ---
