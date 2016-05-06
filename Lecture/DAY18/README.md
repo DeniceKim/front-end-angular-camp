@@ -222,7 +222,7 @@ Bower 패키지 매니저를 통해 프로젝트에 요구되는 라이브러리
 ※ Bower 패키지 설치 이후, 자동으로 HTML 문서에 인젝션(주입) 된다.
 
 - [**MeterializeCSS**: Material 디자인 기반의 최신 반응형 Front-End 프레임워크](http://materializecss.com/)
-- [animate.css](http://daneden.github.io/animate.css/)
+- [**animate.css**](http://daneden.github.io/animate.css/)
 
 ```sh
 $ bower i -S materialize animate.css
