@@ -13,13 +13,15 @@
 - Browserify → JS 번들링
 - 브라우저 싱크(Browser Sync): 실시간 변경 감지 및 브라우저 리로드
 
+-
+
 [project-startkit.zip](project-startkit.zip)
 
--
+---
 
 #### 0. HTML 인젝션(`wiredep`, `gulp-inject`) 주석 설정
 
-Bower 또는 사용자 정의로 관리되는 파일들을 자동으로 HTML 문서에 주입힌다.
+Bower 또는 사용자 정의로 관리되는 파일들을 자동으로 HTML 문서에 주입힌다. `type` 값으로는 `css`, `js` 설정.
 
 ```html
 <!-- bower:{type} -->
@@ -38,7 +40,8 @@ Bower 또는 사용자 정의로 관리되는 파일들을 자동으로 HTML 문
 
 ```sh
 $ npm cache clear
-$ npm install --save-dev "gulp-modernizr@https://github.com/doctyper/gulp-modernizr/tarball/develop"
+# npm install --save-dev {package}
+$ npm i -D "gulp-modernizr@https://github.com/doctyper/gulp-modernizr/tarball/develop"
 ```
 
 -
