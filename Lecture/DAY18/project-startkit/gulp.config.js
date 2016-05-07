@@ -121,7 +121,7 @@ var setting_wiredep = {
     'bowerJson'  : bowerJson,
     'directory'  : bowerJson.directory || './src/bower_components',
     'ignorePath' : '..',
-    'exclude'    : []
+    'exclude'    : ['jquery', 'angular']
   }
 };
 
