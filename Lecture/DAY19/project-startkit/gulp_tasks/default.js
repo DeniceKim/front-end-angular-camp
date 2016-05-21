@@ -8,8 +8,7 @@ gulp.task('default', gulpsync.sync([
   'clear',
   'modernizr',
   ['browserify', 'sass'],
-  'wiredep',
-  'inject',
+  ['wiredep','inject'],
   'watch',
   'serve:dev'
 ]));
