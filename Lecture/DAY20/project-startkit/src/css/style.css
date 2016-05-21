@@ -22,6 +22,9 @@ body {
   margin-bottom: 2rem;
   border-top: 1px solid #eee;
   padding-top: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 600px;
 }
 
 /*# sourceMappingURL=style.css.map */
