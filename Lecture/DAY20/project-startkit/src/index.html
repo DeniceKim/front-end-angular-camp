@@ -18,7 +18,7 @@
 <body>
 
 <!-- 헤더 영역 -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <a href="/" class="navbar-brand">AngularJS 모듈(Module)&amp; 컨트롤러(Controller)</a>
@@ -65,18 +65,33 @@
         class="btn btn-primary">전송</button>
     </div>
   </form>
-  <pre>{{RC.formModel | json}}</pre>
+  <!-- <pre>{{RC.formModel | json}}</pre> -->
 </div>
 <!--// 등록 폼 영역 -->
 
+<hr>
+
 <!-- 리스트 영역 -->
-<div class="container" data-ng-controller="ListController as LC">
-  <pre>{{ LC.model | json }}</pre>
-  <ul>
-    <li>
-      <h3 class="charactor-name" data-ng-bind="LC.model.name"></h3>
-      <h4 class="charactor-shortname" data-ng-bind="LC.model.shortname"></h4>
-      <p>{{LC.model.bio}}</p>
+<div class="container-fluid onepiece-container" data-ng-cloak data-ng-controller="OnepieceController as OC">
+  <div class="form-group">
+    <label for="member-search" class="control-label">원피스 멤버 검색</label>
+    <input id="member-search" type="search" data-ng-model="OC.member_search" class="form-control">
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" data-ng-click="OC.toggleOrder()">
+      <span data-ng-hide="OC.order_reverse">↑ 오름차순</span>
+      <span data-ng-show="OC.order_reverse">↓ 내림차순</span>
+    </button>
+  </div>
+  <ul class="onepiece-member-list">
+    <li
+      class="onepiece-member col-xs-12 col-sm-6 col-md-4 col-lg-3"
+      data-ng-repeat="member in OC.onepieceMembers | limitTo:3 | filter:OC.member_search | orderBy:OC.order:OC.order_reverse"
+    >
+      <img data-ng-src="images/{{member.image}}_tm.jpg" alt="{{member.name}}">
+      <h4 class="member-nickname">{{member.nickname}}</h4>
+      <h3 class="member-name">{{member.name}}</h3>
+      <p class="member-bio">{{member.bio}}</p>
     </li>
   </ul>
 </div>
