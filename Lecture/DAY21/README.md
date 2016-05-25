@@ -699,3 +699,35 @@ angular
 ```
 
 -
+
+### 2-3. 애플리케이션 제작 순서
+
+1. AngularJS를 활용하여 JSON 모델 데이터 템플릿에 적용하여 뷰 구현
+1. 테이블 로우 클릭 이벤트 핸들링 (셀 배경 색 변경)
+1. 테이블 로우 클릭 시 이벤트 핸들링 (디테일 뷰 변경)
+1. 클라이언트 사이드 검색 기능 구현
+1. 클라이언트 사이드 정렬 기능 구현
+1. 사용자 피드백 처리
+
+-
+
+- `.row > .col-md-8 > table.table.table-bordered`
+- `ngRepeat`
+- `ngStyle, ngClass`
+- `ngClick`
+
+- `.row > .col-md-4 > .panel.panel-default > .panel-heading + .panel-body`
+- `dl>dt+dd`
+
+- `.row > .col-md-12 .form-inline.well.well-sm > span.glyphicon.glyphicon-search + .form-group > input.form-control`
+
+
+-
+
+### 2-4. 스코프
+
+1. 스코프란?
+1. 부모 스코프와 자식 스코프
+1. 루트 스코프
+1. 점 표기법
+
