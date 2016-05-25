@@ -5,6 +5,8 @@ angular.module('DemoApp')
 .controller('RegisterController', ['$scope', '$http',
   function($scope, $http) {
 
+  // console.dir($http);
+
   // 지역 변수
   // 외부에서 접근 불가
   var _formModel = {};
@@ -12,10 +14,22 @@ angular.module('DemoApp')
     var required;
     // console.log('사용자가 전송한 폼은 유효한가?', form.$valid);
     if ( form.$valid ) {
-      console.log('전송됨. :)');
+      // console.log('전송됨. :)');
       console.log(_formModel);
+      $http
+        .post('https://minmax-server.herokuapp.com/register/', _formModel)
+        .then(
+          function () {
+            // 전송 성공
+            console.log('전송 성공 :)');
+          },
+          function () {
+            // 전송 실패
+            console.error('전송 실패! :(');
+          }
+        );
     } else {
-      console.error('폼은 유효하지 않습니다. 다시 작성해주세요.');
+      // console.error('폼은 유효하지 않습니다. 다시 작성해주세요.');
       required = form.$error.required[0].$name;
       // 사용자에게 오류 메시지를 보여준다.
       // 조건에 따라 오류메시지를 다르게 보여줘야 한다.
