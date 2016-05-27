@@ -115,7 +115,7 @@ var setting_sass = {
  * -------------------------------------------------------- */
 var bowerJson = require('./bower.json');
 var setting_wiredep = {
-  'index': [src + 'index.html', src + 'form-auto-validate.html'],
+  'index': [src + '*.html'],
   'output': src,
   'options': {
     'bowerJson'  : bowerJson,
@@ -131,7 +131,7 @@ var setting_wiredep = {
  * 옵션: https://www.npmjs.com/package/gulp-inject
  * -------------------------------------------------------- */
 var setting_inject = {
-  'index': [src + '*.html', src + 'form-auto-validate.html'],
+  'index': [src + '*.html'],
   'output': src,
   'css': [
     src + 'css/**/*.css'

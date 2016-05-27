@@ -24,6 +24,7 @@
     "bootstrap": "^3.3.6",
     "angular": "^1.5.5",
     "angular-aria": "^1.5.5",
-    "angular-auto-validate": "^1.19.3"
+    "angular-auto-validate": "^1.19.3",
+    "angular-ladda": "^0.3.4"
   }
 }

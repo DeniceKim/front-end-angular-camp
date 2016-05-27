@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
-  <title>AngularJS Application - Module &amp; Controller</title>
+  <title>Auto Validate Form Design - AngularJS Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="icon" type="image/x-icon" href="images/favicon.ico"> -->
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
@@ -18,7 +18,7 @@
 <body data-ng-cloak>
 
 <!-- 헤더 영역 -->
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <a href="/" class="navbar-brand">AngularJS 폼 디자인</a>
@@ -28,14 +28,9 @@
 <!--// 헤더 영역 -->
 
 <!-- 등록 폼 영역 -->
-<div
-  class="main-content container"
-  data-ng-controller="RegisterController">
-  <form name="registerForm" data-ng-submit="onSubmit(registerForm)" novalidate>
-    <div class="form-group" data-ng-class="{
-      'has-error': (registerForm.name.$dirty || registerForm.$submitted) &amp;&amp; registerForm.name.$invalid,
-      'has-success': registerForm.name.$valid
-    }">
+<div class="main-content container" data-ng-controller="AutoRegisterController">
+  <form data-ng-submit="onSubmit()" novalidate>
+    <div class="form-group">
       <label for="name" class="control-label">아이디 <span aria-label="필수 입력" title="필수 입력">*</span></label>
       <input
         type="text"
@@ -48,30 +43,8 @@
         data-ng-maxlength="10"
         aria-describedby="name-desc"
         required>
-      <p id="name-desc">
-        <span
-          class="help-block"
-          data-ng-show="(registerForm.name.$dirty || registerForm.$submitted) &amp;&amp; registerForm.name.$error.required">
-          아이디는 필수 입력사항입니다.</span>
-        <span
-          class="help-block"
-          data-ng-show="registerForm.name.$error.pattern &amp;&amp; registerForm.name.$error.minlength">
-          아이디는 숫자, 영문, _ 등으로 구성되어야 하며, 최소 5글자 이상이어야 합니다.</span>
-        <span
-          class="help-block"
-          data-ng-show="registerForm.name.$error.pattern &amp;&amp; registerForm.name.$error.maxlength">
-          아이디는 숫자, 영문, _ 등으로 구성되어야 하며, 최대 10글자 이하여야 합니다.</span>
-        <span
-          class="help-block"
-          data-ng-show="registerForm.name.$valid">작성한 아이디는 올바른 유형입니다.</span>
-      </p>
     </div>
-    <div
-      class="form-group"
-      data-ng-class="{
-        'has-error': (registerForm.email.$dirty || registerForm.$submitted) &amp;&amp; registerForm.email.$invalid,
-        'has-success': registerForm.email.$valid
-      }">
+    <div class="form-group">
       <label for="email" class="control-label">이메일 <span aria-label="필수 입력" title="필수 입력">*</span></label>
       <input
         type="email"
@@ -82,23 +55,8 @@
         placeholder="name@email.com"
         aria-describedby="email-desc"
         required>
-      <p id="email-desc">
-        <span
-          class="help-block"
-          data-ng-show="(registerForm.email.$dirty || registerForm.$submitted) &amp;&amp; registerForm.email.$error.required">
-          이메일은 필수 입력사항입니다.</span>
-        <span
-          class="help-block"
-          data-ng-show="registerForm.email.$error.email">작성하는 이메일은 @ 기호를 반드시 사용해야 합니다.</span>
-        <span
-          class="help-block"
-          data-ng-show="registerForm.email.$valid">작성한 이메일은 올바른 유형입니다.</span>
-      </p>
     </div>
-    <div class="form-group" data-ng-class="{
-      'has-error': (registerForm.password.$dirty || registerForm.$submitted) &amp;&amp; registerForm.password.$invalid,
-      'has-success': registerForm.password.$valid
-    }">
+    <div class="form-group">
       <label for="password" class="control-label">패스워드 <span aria-label="필수 입력" title="필수 입력">*</span></label>
       <input
         type="password"
@@ -110,30 +68,11 @@
         data-ng-maxlength="12"
         aria-describedby="password-desc"
         required>
-        <p id="password-desc">
-          <span
-            class="help-block"
-            data-ng-show="(registerForm.password.$dirty || registerForm.$submitted) &amp;&amp; registerForm.password.$error.required">
-            패스워드는 필수 입력사항입니다.</span>
-          <span
-            class="help-block"
-            data-ng-show="registerForm.password.$error.minlength">패스워드는 최소 6글자 이상이어야 합니다.</span>
-          <span
-            class="help-block"
-            data-ng-show="registerForm.password.$error.maxlength">패스워드는 최대 12글자 이하여야 합니다.</span>
-          <span
-            class="help-block"
-            data-ng-show="registerForm.password.$valid">작성한 패스워드는 올바른 유형입니다.</span>
-        </p>
     </div>
-    <!-- <pre>{{registerForm.password | json}}</pre> -->
     <div class="form-group">
-      <button
-        type="submit"
-        class="btn btn-primary">전송</button>
+      <button type="submit" class="btn btn-primary">전송</button>
     </div>
   </form>
-  <!-- <pre>{{registerForm.password | json}}</pre> -->
 </div>
 <!--// 등록 폼 영역 -->
 
