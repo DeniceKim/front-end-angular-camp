@@ -30,7 +30,29 @@
 <!-- 메인 리스트 영역 -->
 <!-- PersonListController 컨트롤러 연결 -->
 <main class="container" data-ng-controller="PersonListController">
-  <pre>{{ persons | json }}</pre>
+  <table class="table table-striped table-condensed table-hover">
+    <caption class="readable-hidden">Simple Table of Persons</caption>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gener</th>
+      <th scope="col">Detail</th>
+    </tr>
+    <tr
+      data-ng-repeat="person in persons"
+      data-ng-class="{
+        'table-on': $index === selectedIndex
+      }"
+      data-ng-click="selectPerson($index)">
+      <td>{{settingReadingZero($index+1)}}</td>
+      <td>{{person.name.first}} {{person.name.last}}</td>
+      <td>{{person.email}}</td>
+      <td>person.gender</td>
+      <td><a href="#!" aria-label="Detail View of {{person.name.first}} {{person.name.last}}">view</a></td>
+    </tr>
+  </table>
+  <!-- <pre>{{ persons | json }}</pre> -->
 </main>
 <!--// 메인 리스트 영역 -->
 

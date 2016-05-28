@@ -27,4 +27,37 @@ body {
   height: 600px;
 }
 
+/**
+ * --------------------------------
+ * PersonListController
+ * ----------------------------- */
+.readable-hidden {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+}
+
+caption.readable-hidden {
+  position: static;
+}
+
+.table-on {
+  background: #ffff98;
+}
+
+.table-striped .table-on:nth-of-type(odd),
+.table-hover .table-on {
+  background: #ffff98;
+}
+
+.table-striped .table-on:nth-of-type(odd):hover,
+.table-hover .table-on:hover {
+  background: #ffff32;
+}
+
 /*# sourceMappingURL=style.css.map */

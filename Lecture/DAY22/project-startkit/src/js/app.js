@@ -13,8 +13,12 @@ require('./modernizr-custom');
 angular.module('PersonListApp', [])
 .controller('PersonListController',
   ['$scope','$http', function($scope, $http){
+
     // 모델(데이터) 초기 값 설정
     $scope.persons = [];
+    // $scope.selectedIndex 속성의 초기값 설정
+    $scope.selectedIndex = null;
+
     // Ajax를 사용하여 모델 데이터 로드
     $http
       .get('../data/persons.json')
@@ -23,6 +27,21 @@ angular.module('PersonListApp', [])
       }, function errorProcess(response) {
         console.error('데이터 로드에 실패했습니다.');
       });
+
+    // 스코프 내에서 사용되는 메소드를 정의
+    $scope.settingReadingZero = function(idx) {
+      if ( idx < 10 ) {
+        idx = '0'+idx;
+      }
+      return idx;
+    };
+
+    // 메소드의 역할: $scope.selectedIndex 속성 값을
+    // 사용자가 클릭한 <tr>의 인덱스($index) 값으로 설정
+    $scope.selectPerson = function(idx) {
+      $scope.selectedIndex = idx;
+      console.log($scope.selectedIndex);
+    };
 
   }]);
 

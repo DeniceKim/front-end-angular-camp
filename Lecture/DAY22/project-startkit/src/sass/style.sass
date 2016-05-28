@@ -22,3 +22,40 @@ body
     overflow: hidden
     text-overflow: ellipsis
     height: 600px
+
+/**
+ * --------------------------------
+ * PersonListController
+ * ----------------------------- */
+// .a11y-hidden,
+// .invisible-hidden,
+// .screen-off,
+.readable-hidden
+  overflow: hidden
+  position: absolute
+  clip:     rect(0,0,0,0)
+  width:    1px
+  height:   1px
+  margin:   -1px
+  border:   0
+  padding:  0
+
+caption.readable-hidden
+  position: static
+
+
+// 테이블 활성화 색상 변수
+$table-on-color: #ffff98
+
+
+.table-on
+  background: $table-on-color
+  // .table-striped .table-on:nth-of-type(odd)
+  .table-striped &:nth-of-type(odd),
+  // .table-hover .table-on
+  .table-hover &
+    background: $table-on-color
+    // .table-striped .table-on:nth-of-type(odd):hover
+    // .table-hover .table-on:hover
+    &:hover
+      background: darken($table-on-color, 20%)
