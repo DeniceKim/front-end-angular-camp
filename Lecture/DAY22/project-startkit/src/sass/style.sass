@@ -27,6 +27,9 @@ body
  * --------------------------------
  * PersonListController
  * ----------------------------- */
+.email-group
+  margin-left: 1rem
+
 // .a11y-hidden,
 // .invisible-hidden,
 // .screen-off,
@@ -59,3 +62,24 @@ $table-on-color: #ffff98
     // .table-hover .table-on:hover
     &:hover
       background: darken($table-on-color, 20%)
+
+
+.panel
+  dl
+    margin-bottom: 0
+  dt
+    padding-top: 1rem
+  dd
+    padding-bottom: 1rem
+    border-bottom: 1px dashed #d8d8d8
+
+    &:last-child
+      padding-bottom: 0
+      border-bottom: none
+
+  .img-frame
+    margin-top: 10px
+    border: 1px solid #c3c3c3
+    padding: 5px
+    background: #fff
+    box-shadow: 1px 1px 0 hsla(0,0%,0%,0.23)

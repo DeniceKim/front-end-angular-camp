@@ -18,6 +18,10 @@ angular.module('PersonListApp', [])
     $scope.persons = [];
     // $scope.selectedIndex 속성의 초기값 설정
     $scope.selectedIndex = null;
+    // $scope.selectedPerson 속성의 초기값 설정
+    $scope.selectedPerson = null;
+    // 사용자가 검색하는 이름/메일을 포함하는 객체 초기 설정
+    $scope.search = {};
 
     // Ajax를 사용하여 모델 데이터 로드
     $http
@@ -38,10 +42,48 @@ angular.module('PersonListApp', [])
 
     // 메소드의 역할: $scope.selectedIndex 속성 값을
     // 사용자가 클릭한 <tr>의 인덱스($index) 값으로 설정
-    $scope.selectPerson = function(idx) {
+    $scope.selectPerson = function(idx, person) {
       $scope.selectedIndex = idx;
-      console.log($scope.selectedIndex);
+      $scope.selectedPerson = person;
+      // console.log($scope.selectedPerson.name.first);
     };
+
+    // 첫글자를 대문자로 변환해서 반환하는 메소드
+    $scope.capitalize = function(str) {
+      if (!str) { return ''; }
+      var firstLetter = str.charAt(0).toUpperCase();
+      return firstLetter + str.slice(1) + '.';
+    };
+
+    //
+    $scope.setComma = function(str) {
+      if (!str) { return ''; }
+      return str + ',';
+    };
+
+    // AU, BR, CA, CH, DE, DK, ES, FI, FR, GB, IE, IR, NL, NZ, TR, US
+
+    $scope.setNation = function(nation) {
+      if (!nation) {return ''}
+      switch(nation) {
+        case 'AU': return 'Australia';
+        case 'BR': return 'Brazil';
+        case 'CA': return 'Canada';
+        case 'CH': return 'Switzerland';
+        case 'DE': return 'Germany';
+        case 'DK': return 'Denmark';
+        case 'ES': return 'Spain';
+        case 'FI': return 'Finland';
+        case 'FR': return 'France';
+        case 'GB': return 'United Kingdom';
+        case 'IE': return 'Ireland';
+        case 'IR': return 'Iran';
+        case 'NL': return 'Netherlands';
+        case 'NZ': return 'New Zealand';
+        case 'TR': return 'Turkey';
+        case 'US': return 'United States';
+      }
+    }
 
   }]);
 

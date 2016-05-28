@@ -32,6 +32,29 @@
 <main class="container" data-ng-controller="PersonListController">
   <div class="row">
     <div class="col-md-7">
+      <form class="form-inline well well-sm">
+        <div class="form-group">
+          <label for="search" class="control-label">
+            <span class="glyphicon glyphicon-search" aria-label="Search Name"></span>
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="search"
+            placeholder="Search ..."
+            data-ng-model="search.name">
+        </div>
+        <div class="email-group form-group">
+          <label for="email" class="control-label">
+            <span class="glyphicon glyphicon-envelope" aria-label="Search Email"></span>
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            data-ng-model="search.email">
+        </div>
+      </form>
       <table class="table table-striped table-condensed table-hover">
         <caption class="readable-hidden">Simple Table of Persons</caption>
         <tr>
@@ -46,7 +69,7 @@
           data-ng-class="{
             'table-on': $index === selectedIndex
           }"
-          data-ng-click="selectPerson($index)">
+          data-ng-click="selectPerson($index, person)">
           <td>{{settingReadingZero($index+1)}}</td>
           <td>{{person.name.first}} {{person.name.last}}</td>
           <td>{{person.email}}</td>
@@ -58,6 +81,7 @@
         </tr>
       </table>
     </div>
+
     <div class="col-md-5">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -66,21 +90,43 @@
         <div class="panel-body">
           <dl>
             <dt>Photo</dt>
-            <dd></dd>
+            <dd>
+              <img
+                class="img-frame"
+                alt=""
+                src="https://lh3.googleusercontent.com/-ErwSGXTkBG0/AAAAAAAAAAI/AAAAAAAAAAA/5wMKoYp4NiY/photo.jpg"
+                data-ng-src="{{selectedPerson.picture.large}}"
+                width="150"
+                height="150">
+            </dd>
             <dt>Name</dt>
-            <dd></dd>
+            <!-- title 값을 전달 받아 첫 글자를 대문자로 바꾼 후 반환하는 $scope.capitalize() 메소드 정의 -->
+            <dd>
+              {{ capitalize(selectedPerson.name.title) }}
+              {{selectedPerson.name.first}} {{selectedPerson.name.last}}</dd>
             <dt>User Name</dt>
-            <dd></dd>
+            <dd>{{selectedPerson.login.username}}</dd>
             <dt>Gender</dt>
-            <dd></dd>
+            <dd>{{selectedPerson.gender}}</dd>
             <dt>Email</dt>
-            <dd></dd>
+            <dd>
+              <a href="mailto:{{selectedPerson.email}}">{{selectedPerson.email}}</a>
+            </dd>
             <dt>Cell</dt>
-            <dd></dd>
+            <dd>{{selectedPerson.cell}}</dd>
             <dt>Address</dt>
-            <dd></dd>
+            <!-- $scope.setComma() -->
+            <dd>
+              {{ setComma(selectedPerson.location.street) }}
+              {{ setComma(selectedPerson.location.city) }}
+              {{ selectedPerson.location.state }}
+            </dd>
+            <!-- $scope.setNation() -->
+            <dt>Nation</dt>
+            <dd>{{ setNation(selectedPerson.nat) }}</dd>
           </dl>
         </div>
+        <!-- <pre>{{search|json}}</pre> -->
       </div>
     </div>
   </div>
@@ -92,6 +138,16 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="js/app.bundle.js"></script>
+<!-- endinject -->
+</body>
+</html>ar-aria/angular-aria.js"></script>
+<script src="bower_components/angular-auto-validate/dist/jcs-auto-validate.js"></script>
+<script src="bower_components/spin.js/spin.js"></script>
+<script src="bower_components/ladda/dist/ladda.min.js"></script>
+<script src="bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
 <!-- endbower -->
 <!-- inject:js -->
 <script src="js/app.bundle.js"></script>
