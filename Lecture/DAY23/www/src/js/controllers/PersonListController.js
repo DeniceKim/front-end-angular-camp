@@ -4,6 +4,7 @@
 var app = angular.module('PersonListApp');
 
 app.controller('PersonListController', ['$scope', '$http', function($scope, $http){
+
     // 모델(데이터) 초기 값 설정
     $scope.persons = [];
     // $scope.selectedIndex 속성의 초기값 설정
@@ -19,17 +20,14 @@ app.controller('PersonListController', ['$scope', '$http', function($scope, $htt
     $http
       .get('../data/persons.json')
       .then(function successProcess(response) {
-        $scope.persons = response.data.results;
+        $scope.persons = response.data.results; // [{}, {}, {}]
       }, function errorProcess(response) {
         console.error('데이터 로드에 실패했습니다.');
       });
 
-    // 스코프 내에서 사용되는 메소드를 정의
-    $scope.settingReadingZero = function(idx) {
-      if ( idx < 10 ) {
-        idx = '0'+idx;
-      }
-      return idx;
+    // 오더 설정 메소드
+    $scope.setOrder = function(value) {
+      $scope.order = value;
     };
 
     // 메소드의 역할: $scope.selectedIndex 속성 값을
@@ -38,43 +36,6 @@ app.controller('PersonListController', ['$scope', '$http', function($scope, $htt
       $scope.selectedIndex = idx;
       $scope.selectedPerson = person;
       // console.log($scope.selectedPerson.name.first);
-    };
-
-    // 첫글자를 대문자로 변환해서 반환하는 메소드
-    $scope.capitalize = function(str) {
-      if (!str) { return ''; }
-      var firstLetter = str.charAt(0).toUpperCase();
-      return firstLetter + str.slice(1) + '.';
-    };
-
-    //
-    $scope.setComma = function(str) {
-      if (!str) { return ''; }
-      return str + ',';
-    };
-
-    // AU, BR, CA, CH, DE, DK, ES, FI, FR, GB, IE, IR, NL, NZ, TR, US
-
-    $scope.setNation = function(nation) {
-      if (!nation) {return ''}
-      switch(nation) {
-        case 'AU': return 'Australia';
-        case 'BR': return 'Brazil';
-        case 'CA': return 'Canada';
-        case 'CH': return 'Switzerland';
-        case 'DE': return 'Germany';
-        case 'DK': return 'Denmark';
-        case 'ES': return 'Spain';
-        case 'FI': return 'Finland';
-        case 'FR': return 'France';
-        case 'GB': return 'United Kingdom';
-        case 'IE': return 'Ireland';
-        case 'IR': return 'Iran';
-        case 'NL': return 'Netherlands';
-        case 'NZ': return 'New Zealand';
-        case 'TR': return 'Turkey';
-        case 'US': return 'United States';
-      }
     };
 
     $scope.sensitiveSearch = function(person) {

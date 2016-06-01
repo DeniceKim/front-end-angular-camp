@@ -65,38 +65,39 @@
             Name
             <button
               data-ng-class="{'on': order === 'name'}"
-              data-ng-click="order='name'" type="button" class="button-order">
-              <span class="glyphicon glyphicon-sort-by-alphabet" aria-label="order ASC"></span>
+              data-ng-click="setOrder('name')" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-alphabet" aria-label="Name order ASC"></span>
             </button>
             <button
               data-ng-class="{'on': order === '-name'}"
-              data-ng-click="order='-name'" type="button" class="button-order">
-              <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-label="order DESC"></span>
+              data-ng-click="setOrder('-name')" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-label="Name order DESC"></span>
             </button>
           </th>
           <th scope="col">
             Email
             <button
               data-ng-class="{'on': order === 'email'}"
-              data-ng-click="order='email'" type="button" class="button-order">
-              <span class="glyphicon glyphicon-sort-by-order" aria-label="order ASC"></span>
+              data-ng-click="setOrder('email')" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-order" aria-label="Email order ASC"></span>
             </button>
             <button
               data-ng-class="{'on': order === '-email'}"
-              data-ng-click="order='-email'" type="button" class="button-order">
-              <span class="glyphicon glyphicon-sort-by-order-alt" aria-label="order DESC"></span>
+              data-ng-click="setOrder('-email')" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-order-alt" aria-label="Email order DESC"></span>
             </button>
           </th>
           <th scope="col">Gener</th>
           <th scope="col">Detail</th>
         </tr>
         <tr
-          data-ng-repeat="person in persons | filter:sensitiveSearch | orderBy:order"
+          data-ng-repeat="person in filteredPersons = (persons | filter:sensitiveSearch | orderBy:order)"
           data-ng-class="{
-            'table-on': $index === selectedIndex
+            'table-on': person.email === selectedPerson.email
           }"
           data-ng-click="selectPerson($index, person)">
-          <td>{{settingReadingZero($index+1)}}</td>
+          <!-- <td>{{person.email === selectedPerson.email}}</td> -->
+          <td>{{ $index+1 | readingZero }}</td>
           <td>{{person.name.first}} {{person.name.last}}</td>
           <td>{{person.email}}</td>
           <td>person.gender</td>
@@ -104,6 +105,12 @@
             href="#!"
             title="Detail View of {{person.name.first}} {{person.name.last}}"
             aria-label="Detail View of {{person.name.first}} {{person.name.last}}">view</a></td>
+        </tr>
+        <!-- 검색한 필드 내용이 없다면... -->
+        <tr class="search-result" data-ng-show="filteredPersons.length === 0">
+          <td colspan="5">
+            <p class="alert alert-info text-center">Filtered not found for Term of '{{search}}'.</p>
+          </td>
         </tr>
       </table>
     </div>
@@ -128,8 +135,8 @@
             <dt>Name</dt>
             <!-- title 값을 전달 받아 첫 글자를 대문자로 바꾼 후 반환하는 $scope.capitalize() 메소드 정의 -->
             <dd>
-              {{ capitalize(selectedPerson.name.title) }}
-              {{selectedPerson.name.first}} {{selectedPerson.name.last}}</dd>
+              {{ selectedPerson.name.title | capitalize:true }}
+              {{ selectedPerson.name.first }} {{ selectedPerson.name.last }}</dd>
             <dt>User Name</dt>
             <dd>{{selectedPerson.login.username}}</dd>
             <dt>Gender</dt>
@@ -141,15 +148,15 @@
             <dt>Cell</dt>
             <dd>{{selectedPerson.cell}}</dd>
             <dt>Address</dt>
-            <!-- $scope.setComma() -->
+            <!-- $scope.) -->
             <dd>
-              {{ setComma(selectedPerson.location.street) }}
-              {{ setComma(selectedPerson.location.city) }}
+              {{ selectedPerson.location.street | comma }}
+              {{ selectedPerson.location.city | comma }}
               {{ selectedPerson.location.state }}
             </dd>
             <!-- $scope.setNation() -->
             <dt>Nation</dt>
-            <dd>{{ setNation(selectedPerson.nat) }}</dd>
+            <dd>{{ selectedPerson.nat | nation }}</dd>
           </dl>
         </div>
         <!-- <pre>{{search.$|json}}</pre> -->

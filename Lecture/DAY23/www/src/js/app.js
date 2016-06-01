@@ -16,4 +16,6 @@ angular.module('PersonListApp', []);
 // AngularJS 모듈 호출
 // ------------------------------------------------------
 // 컨트롤러
-require('./controllers/PersonListController.js');
+require('./controllers/PersonListController');
+// 필터
+require('./filters/PersonListFilters');
