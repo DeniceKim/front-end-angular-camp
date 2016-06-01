@@ -61,8 +61,32 @@
         <caption class="readable-hidden">Simple Table of Persons</caption>
         <tr>
           <th scope="col">No.</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
+          <th scope="col">
+            Name
+            <button
+              data-ng-class="{'on': order === 'name'}"
+              data-ng-click="order='name'" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-alphabet" aria-label="order ASC"></span>
+            </button>
+            <button
+              data-ng-class="{'on': order === '-name'}"
+              data-ng-click="order='-name'" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-label="order DESC"></span>
+            </button>
+          </th>
+          <th scope="col">
+            Email
+            <button
+              data-ng-class="{'on': order === 'email'}"
+              data-ng-click="order='email'" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-order" aria-label="order ASC"></span>
+            </button>
+            <button
+              data-ng-class="{'on': order === '-email'}"
+              data-ng-click="order='-email'" type="button" class="button-order">
+              <span class="glyphicon glyphicon-sort-by-order-alt" aria-label="order DESC"></span>
+            </button>
+          </th>
           <th scope="col">Gener</th>
           <th scope="col">Detail</th>
         </tr>
