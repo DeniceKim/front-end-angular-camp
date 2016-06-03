@@ -106,7 +106,7 @@ angular.module('PersonListApp')
     // 현재 페이지 속성
     'page': 1,
     // 로드 시 불러올 데이터 개수 속성
-    count': 20,
+    'count': 20,
     // 로드 제한 횟수 속성
     'limit': 5,
     // 불러올 페이지 유무 속성
