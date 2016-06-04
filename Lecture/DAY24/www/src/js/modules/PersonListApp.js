@@ -1,7 +1,7 @@
 // -----------------------------------------------------
 // AngularJS 모듈 정의
 // -----------------------------------------------------
-angular.module('PersonListApp', []);
+angular.module('PersonListApp', ['infinite-scroll']);
 
 // ------------------------------------------------------
 // AngularJS 모듈 호출
@@ -12,7 +12,8 @@ require('../controllers/PersonListController');
 require('../controllers/PersonDetailController');
 
 // 서비스
-require('../services/PersonsFactory');
+require('../services/PersonsService');
+require('../services/PersonFactory');
 
 // 필터
 require('../filters/PersonListFilters');

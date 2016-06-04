@@ -45,4 +45,8 @@ app.controller('PersonListController', ['$scope', 'PersonsService', function($sc
       return true;
     };
 
+    $scope.loadMore = function() {
+      console.log('load more...');
+    };
+
   }]);

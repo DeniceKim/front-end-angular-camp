@@ -76,6 +76,10 @@ app.controller('PersonListController', ['$scope', 'PersonsService', function($sc
       return true;
     };
 
+    $scope.loadMore = function() {
+      console.log('load more...');
+    };
+
   }]);
 },{}],4:[function(require,module,exports){
 /*! PersonListFilters.js © yamoo9.net, 2016 */
@@ -140,7 +144,7 @@ app.filter('nation', function() {
 // -----------------------------------------------------
 // AngularJS 모듈 정의
 // -----------------------------------------------------
-angular.module('PersonListApp', []);
+angular.module('PersonListApp', ['infinite-scroll']);
 
 // ------------------------------------------------------
 // AngularJS 모듈 호출
@@ -151,11 +155,12 @@ require('../controllers/PersonListController');
 require('../controllers/PersonDetailController');
 
 // 서비스
-require('../services/PersonsFactory');
+require('../services/PersonsService');
+require('../services/PersonFactory');
 
 // 필터
 require('../filters/PersonListFilters');
-},{"../controllers/PersonDetailController":2,"../controllers/PersonListController":3,"../filters/PersonListFilters":4,"../services/PersonsFactory":8}],7:[function(require,module,exports){
+},{"../controllers/PersonDetailController":2,"../controllers/PersonListController":3,"../filters/PersonListFilters":4,"../services/PersonFactory":8,"../services/PersonsService":9}],7:[function(require,module,exports){
 /*! ScopeStudy.js © yamoo9.net, 2016 */
 'use strict';
 
@@ -182,24 +187,71 @@ function childFn($scope) {
   };
 }
 },{}],8:[function(require,module,exports){
-/*! PersonsFactory.js © yamoo9.net, 2016 */
+/*! PersonFactory.js © yamoo9.net, 2016 */
 'use strict';
 
-angular.module('PersonListApp').service('PersonsService', ['$http', function($http){
+var app = angular.module('PersonListApp');
 
-  var _service = {
-    'selectedPerson': null,
-    'persons': []
+app.factory('PersonFactory', ['$http', function($http) {
+
+  // RESTFull Service
+  // JSON
+  // Client <- AJAX -> Server
+  // $http 서비스 말고
+  // ngResource 모듈 로드
+  // $resource 서비스 쉽게 활용
+
+  return function(page, count) {
+    // 초기 값 설정
+    page = page || 1;
+    count = count || 20;
+    // GET
+    return $http.get('http://api.randomuser.me/?page='+page+'&results='+count);
   };
 
+}]);
+},{}],9:[function(require,module,exports){
+/*! PersonsService.js © yamoo9.net, 2016 */
+'use strict';
+
+angular.module('PersonListApp').service('PersonsService', ['PersonFactory', function(PersonFactory){
+
+  var _service = {
+
+    'selectedPerson': null,
+    'persons': [],
+
+    'page': 1,
+    'limit': 3,
+    'count': 20,
+    'hasMore': true,
+    'isLoading': false,
+
+    'loadPerson': function() {
+      var _this = this;
+      // 팩토리(함수) 실행
+      // 비동기 통신을 통해 데이터를 받아와서 추가한다.
+      if ( _this.hasMore && !_this.isLoading ) {
+        PersonFactory(_this.page, _this.count).then(function(response) {
+          angular.forEach(response.data.results, function(person) {
+            _this.persons.push(person);
+          })
+        });
+        _this.page += 1;
+      }
+    }
+  };
+
+  _service.loadPerson();
+
   // 비동기 데이터 로드
-  $http
-    .get('/data/persons.json')
-    .then(function(response) {
-      angular.forEach(response.data.results, function(person){
-        _service.persons.push(person);
-      });
-    });
+  // $http
+  //   .get('/data/persons.json')
+  //   .then(function(response) {
+  //     angular.forEach(response.data.results, function(person){
+  //       _service.persons.push(person);
+  //     });
+  //   });
 
   // 먼저 반환되었어도 객체가 반환되었기 때문에
   // 객체를 참조하게 되면 객체의 변경된 속성 값도 추후에 참조할 수 있다.
