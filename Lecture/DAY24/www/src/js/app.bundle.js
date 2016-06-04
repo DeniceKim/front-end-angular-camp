@@ -18,11 +18,15 @@ require('./modules/ScopeStudy');
 var app = angular.module('PersonListApp');
 
 // Angular의 모듈에 컨트롤러 함수 등록
-app.controller('PersonDetailController', ['$scope', PersonDetailControllerFn]);
+app.controller('PersonDetailController', ['$scope', 'PersonsService', PersonDetailControllerFn]);
 
 // 컨트롤러 함수 정의
-function PersonDetailControllerFn ($scope) {
+function PersonDetailControllerFn ($scope, PersonsService) {
+  // 서비스 객체를 $scope의 속성에 할당(참조)하여 동적으로 변경되는 것을 처리.
+  $scope.service = PersonsService;
 
+  // 아래 코드는 로드 되었을 때 1회만 실행된다.
+  // $scope.selectedPerson = PersonsService.selectedPerson;
 }
 },{}],3:[function(require,module,exports){
 /*! PersonListController.js © yamoo9.net, 2016 */
@@ -30,13 +34,13 @@ function PersonDetailControllerFn ($scope) {
 
 var app = angular.module('PersonListApp');
 
-app.controller('PersonListController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+app.controller('PersonListController', ['$scope', 'PersonsService', function($scope, PersonsService){
 
-    // 임시 테스트
-    $rootScope.tmp = 'TEMP';
+    $scope.PersonsService = PersonsService;
 
     // 모델(데이터) 초기 값 설정
-    $scope.persons = [];
+    // $scope.persons = [];
+    $scope.persons = $scope.PersonsService.persons;
     // $scope.selectedIndex 속성의 초기값 설정
     $scope.selectedIndex = null;
     // $scope.selectedPerson 속성의 초기값 설정
@@ -45,15 +49,6 @@ app.controller('PersonListController', ['$rootScope', '$scope', '$http', functio
     $scope.search = '';
     // 정렬(order) 초기값 설정
     $scope.order = 'name';
-
-    // Ajax를 사용하여 모델 데이터 로드
-    $http
-      .get('../data/persons.json')
-      .then(function successProcess(response) {
-        $scope.persons = response.data.results; // [{}, {}, {}]
-      }, function errorProcess(response) {
-        console.error('데이터 로드에 실패했습니다.');
-      });
 
     // 오더 설정 메소드
     $scope.setOrder = function(value) {
@@ -65,7 +60,8 @@ app.controller('PersonListController', ['$rootScope', '$scope', '$http', functio
     $scope.selectPerson = function(idx, person) {
       $scope.selectedIndex = idx;
       $scope.selectedPerson = person;
-      // console.log($scope.selectedPerson.name.first);
+      $scope.PersonsService.selectedPerson = person;
+      console.log($scope.PersonsService.selectedPerson);
     };
 
     $scope.sensitiveSearch = function(person) {
@@ -154,9 +150,12 @@ angular.module('PersonListApp', []);
 require('../controllers/PersonListController');
 require('../controllers/PersonDetailController');
 
+// 서비스
+require('../services/PersonsFactory');
+
 // 필터
 require('../filters/PersonListFilters');
-},{"../controllers/PersonDetailController":2,"../controllers/PersonListController":3,"../filters/PersonListFilters":4}],7:[function(require,module,exports){
+},{"../controllers/PersonDetailController":2,"../controllers/PersonListController":3,"../filters/PersonListFilters":4,"../services/PersonsFactory":8}],7:[function(require,module,exports){
 /*! ScopeStudy.js © yamoo9.net, 2016 */
 'use strict';
 
@@ -182,6 +181,31 @@ function childFn($scope) {
     $scope.name = 'reset child scope Property';
   };
 }
+},{}],8:[function(require,module,exports){
+/*! PersonsFactory.js © yamoo9.net, 2016 */
+'use strict';
+
+angular.module('PersonListApp').service('PersonsService', ['$http', function($http){
+
+  var _service = {
+    'selectedPerson': null,
+    'persons': []
+  };
+
+  // 비동기 데이터 로드
+  $http
+    .get('/data/persons.json')
+    .then(function(response) {
+      angular.forEach(response.data.results, function(person){
+        _service.persons.push(person);
+      });
+    });
+
+  // 먼저 반환되었어도 객체가 반환되었기 때문에
+  // 객체를 참조하게 되면 객체의 변경된 속성 값도 추후에 참조할 수 있다.
+  return _service;
+
+}]);
 },{}]},{},[1]);
 
 //# sourceMappingURL=app.bundle.js.map

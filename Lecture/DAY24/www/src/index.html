@@ -128,35 +128,35 @@
                 class="img-frame"
                 alt=""
                 src="https://lh3.googleusercontent.com/-ErwSGXTkBG0/AAAAAAAAAAI/AAAAAAAAAAA/5wMKoYp4NiY/photo.jpg"
-                data-ng-src="{{selectedPerson.picture.large}}"
+                data-ng-src="{{service.selectedPerson.picture.large}}"
                 width="150"
                 height="150">
             </dd>
             <dt>Name</dt>
             <!-- title 값을 전달 받아 첫 글자를 대문자로 바꾼 후 반환하는 $scope.capitalize() 메소드 정의 -->
             <dd>
-              {{ selectedPerson.name.title | capitalize:true }}
-              {{ selectedPerson.name.first }} {{ selectedPerson.name.last }}</dd>
+              {{ service.selectedPerson.name.title | capitalize:true }}
+              {{ service.selectedPerson.name.first }} {{ service.selectedPerson.name.last }}</dd>
             <dt>User Name</dt>
-            <dd>{{selectedPerson.login.username}}</dd>
+            <dd>{{service.selectedPerson.login.username}}</dd>
             <dt>Gender</dt>
-            <dd>{{selectedPerson.gender}}</dd>
+            <dd>{{service.selectedPerson.gender}}</dd>
             <dt>Email</dt>
             <dd>
-              <a href="mailto:{{selectedPerson.email}}">{{selectedPerson.email}}</a>
+              <a href="mailto:{{service.selectedPerson.email}}">{{service.selectedPerson.email}}</a>
             </dd>
             <dt>Cell</dt>
-            <dd>{{selectedPerson.cell}}</dd>
+            <dd>{{service.selectedPerson.cell}}</dd>
             <dt>Address</dt>
             <!-- $scope.) -->
             <dd>
-              {{ selectedPerson.location.street | comma }}
-              {{ selectedPerson.location.city | comma }}
-              {{ selectedPerson.location.state }}
+              {{ service.selectedPerson.location.street | comma }}
+              {{ service.selectedPerson.location.city | comma }}
+              {{ service.selectedPerson.location.state }}
             </dd>
             <!-- $scope.setNation() -->
             <dt>Nation</dt>
-            <dd>{{ selectedPerson.nat | nation }}</dd>
+            <dd>{{ service.selectedPerson.nat | nation }}</dd>
           </dl>
         </div>
         <!-- <pre>{{search.$|json}}</pre> -->
@@ -171,16 +171,6 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<!-- endbower -->
-<!-- inject:js -->
-<script src="js/app.bundle.js"></script>
-<!-- endinject -->
-</body>
-</html>ar-aria/angular-aria.js"></script>
-<script src="bower_components/angular-auto-validate/dist/jcs-auto-validate.js"></script>
-<script src="bower_components/spin.js/spin.js"></script>
-<script src="bower_components/ladda/dist/ladda.min.js"></script>
-<script src="bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
 <!-- endbower -->
 <!-- inject:js -->
 <script src="js/app.bundle.js"></script>

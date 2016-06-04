@@ -11,5 +11,8 @@ angular.module('PersonListApp', []);
 require('../controllers/PersonListController');
 require('../controllers/PersonDetailController');
 
+// 서비스
+require('../services/PersonsFactory');
+
 // 필터
 require('../filters/PersonListFilters');

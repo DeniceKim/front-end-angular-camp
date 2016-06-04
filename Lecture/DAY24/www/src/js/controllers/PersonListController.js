@@ -3,13 +3,13 @@
 
 var app = angular.module('PersonListApp');
 
-app.controller('PersonListController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+app.controller('PersonListController', ['$scope', 'PersonsService', function($scope, PersonsService){
 
-    // 임시 테스트
-    $rootScope.tmp = 'TEMP';
+    $scope.PersonsService = PersonsService;
 
     // 모델(데이터) 초기 값 설정
-    $scope.persons = [];
+    // $scope.persons = [];
+    $scope.persons = $scope.PersonsService.persons;
     // $scope.selectedIndex 속성의 초기값 설정
     $scope.selectedIndex = null;
     // $scope.selectedPerson 속성의 초기값 설정
@@ -18,15 +18,6 @@ app.controller('PersonListController', ['$rootScope', '$scope', '$http', functio
     $scope.search = '';
     // 정렬(order) 초기값 설정
     $scope.order = 'name';
-
-    // Ajax를 사용하여 모델 데이터 로드
-    $http
-      .get('../data/persons.json')
-      .then(function successProcess(response) {
-        $scope.persons = response.data.results; // [{}, {}, {}]
-      }, function errorProcess(response) {
-        console.error('데이터 로드에 실패했습니다.');
-      });
 
     // 오더 설정 메소드
     $scope.setOrder = function(value) {
@@ -38,7 +29,8 @@ app.controller('PersonListController', ['$rootScope', '$scope', '$http', functio
     $scope.selectPerson = function(idx, person) {
       $scope.selectedIndex = idx;
       $scope.selectedPerson = person;
-      // console.log($scope.selectedPerson.name.first);
+      $scope.PersonsService.selectedPerson = person;
+      console.log($scope.PersonsService.selectedPerson);
     };
 
     $scope.sensitiveSearch = function(person) {
